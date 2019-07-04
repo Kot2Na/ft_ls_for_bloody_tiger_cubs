@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:10:41 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/05 02:04:01 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/05 02:20:26 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,19 @@ t_tree *tree_addend_chil(t_tree *root, t_tree *leaf)
 	}
 	return (leaf);
 }
+
+void tree_destroy(t_tree *tree)
+{
+	if (tree)
+	{
+		tree_destroy(tree->next);
+		tree_destroy(tree->child);
+		ft_putstr(tree->name);
+		ft_putstr("was delete\n")
+		if (tree->data)
+			free(data);
+		free(tree->name);
+		free(tree);
+	}
+}
+
