@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/06 14:14:22 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/06 14:52:50 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,25 @@ void	set_flags(char **argv, t_bit *flags)
     int i;
     int j;
 
-    i = 0;
-    j = 0;
+    i = 1;
     while (argv[i])
     {
+        j = 0;
         while (argv[i][j])
         {
             if (argv[i][j] == 'a')
                 flags->a = 1;
-            else if (argv[i][j] == 'R')
+			else if (argv[i][j] == 'R')
                 flags->R = 1;
-            else if (argv[i][j] == 'l')
+			else if (argv[i][j] == 'l')
                 flags->l = 1;
-            else if (argv[i][j] == 'r')
+			else if (argv[i][j] == 'r')
                 flags->r = 1;
-            else if (argv[i][j] == 't')
+			else if (argv[i][j] == 't')
                 flags->t = 1;
             j++;
         }
         i++;
-        j = 0;
     }
 }
 
