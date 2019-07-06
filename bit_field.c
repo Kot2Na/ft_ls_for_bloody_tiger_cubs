@@ -6,33 +6,20 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/05 03:10:00 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/06 14:14:22 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libls.h"
 
-typedef struct s_bit
-{
-	unsigned int a:1;
-	unsigned int R:1;
-	unsigned int l:1;
-	unsigned int t:1;
-	unsigned int r:1;
-} t_bit;
-
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-
-int	is_legal(char c)
+int		is_legal(char c)
 {
 	if (c != 'a' && c != 'R' && c != 'l' && c != 'r' && c != 't')
 		return (0);
 	return (1);
 }
 
-int	validate_flags(char **argv)
+int		validate_flags(char **argv)
 {
 	int i;
 	int j;
@@ -68,7 +55,7 @@ int	validate_flags(char **argv)
 	return (1);
 }
 
-void    set_flags(char **argv, t_bit *flags)
+void	set_flags(char **argv, t_bit *flags)
 {
     int i;
     int j;
@@ -96,26 +83,11 @@ void    set_flags(char **argv, t_bit *flags)
     }
 }
 
-void    set_zero(t_bit *flags)
+void	set_zero(t_bit *flags)
 {
     flags->a = 0;
     flags->R = 0;
     flags->l = 0;
     flags->r = 0;
     flags->t = 0;
-}
-
-int main(int argc, char **argv)
-{
-	t_bit *flags;
-	flags = (t_bit *)malloc(sizeof(t_bit));
-	if (argc > 1 && !(validate_flags(argv)))
-	{
-		free(flags);
-		ft_putstr("usage: ls [-Ralrt] [file ...]\n");
-		exit(0);
-	}
-	set_zero(flags);
-	set_flags(argv, flags);
-	return (0);
 }

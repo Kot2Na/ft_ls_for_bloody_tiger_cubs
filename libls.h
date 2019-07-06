@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/05 05:11:46 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/06 14:15:35 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,23 @@
 # define LIBLS_H
 
 # include "libft.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <errno.h>
-#include <string.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <dirent.h>
+# include <errno.h>
+# include <string.h>
 
 typedef struct dirent	t_dir;
 typedef struct stat		t_stat;
+
+typedef struct			s_bit
+{
+	unsigned int		a:1;
+	unsigned int		R:1;
+	unsigned int		l:1;
+	unsigned int		t:1;
+	unsigned int		r:1;
+} 						t_bit;
 
 typedef struct			s_data
 {
@@ -47,5 +56,9 @@ t_tree					*tree_addend(t_tree *start, t_tree *new);
 t_tree					*tree_addend_chil(t_tree *root, t_tree *leaf);
 void					tree_print(t_tree *tree);
 void					tree_destroy(t_tree *tree);
+int						is_legal(char c);
+int						validate_flags(char **argv);
+void					set_flags(char **argv, t_bit *flags);
+void					set_zero(t_bit *flags);
 
 #endif
