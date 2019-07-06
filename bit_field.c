@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/05 03:10:00 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/06 14:54:14 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void    set_flags(char **argv, t_bit *flags)
     int i;
     int j;
 
-    i = 0;
+    i = 1;
     j = 0;
     while (argv[i])
     {
