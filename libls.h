@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 17:16:43 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/07 17:25:34 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,6 @@ int						is_legal(char c);
 int						validate_flags(char **argv);
 void					set_flags(char **argv, t_bit *flags);
 void					set_zero(t_bit *flags);
-//void					fill_data(char *name, t_tree *node);
-void					fill_data(char *name);
-void					get_time(t_stat *buff);
-//void					get_time(struct stat *buff, t_tree *node);
+void					fill_data(char *name, t_tree *node);
 
 #endif
