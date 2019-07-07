@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/06 19:45:05 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/06 21:24:47 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <dirent.h>
 # include <errno.h>
 # include <string.h>
+# include <limits.h>
 
 typedef struct dirent	t_dir;
 typedef struct stat		t_stat;
@@ -56,7 +57,7 @@ t_tree					*tree_create(char *name);
 t_tree					*tree_addend(t_tree *start, t_tree *new);
 t_tree					*tree_addend_chil(t_tree *root, t_tree *leaf);
 t_tree					*tree_to_start(t_tree *tree);
-t_tree					*tree_open(char *name);
+t_tree					*tree_open(t_bit *bit, t_tree *root, char *name);
 t_tree					*tree_born(t_bit *bit, int ac, char **av);
 void					tree_print(t_tree *tree);
 void					tree_destroy(t_tree *tree);

@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/06 19:29:12 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/06 22:00:05 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,41 @@ t_tree	*tree_to_start(t_tree *tree)
 	return (tree);
 }
 
-t_tree	*tree_open(char *name)
+char	*make_path(char *from, char *to)
+{
+	char *result;
+
+	result = NULL;
+	result = ft_strjoin(from, "/");
+	from = result;
+	result = ft_strjoin(result, to);
+	free(from);
+	return (result);
+}
+
+t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 {
 	DIR		*fdir;
 	t_dir	*file;
-	t_tree	*root;
-
-	root = NULL;
-	root = tree_create(name);
+	t_tree	*leaf;
+	char	*path;
+	
+	path = name;
 	if ((fdir = opendir(name)))
 	{
 		while((file = readdir(fdir)))
-			tree_addend_chil(root, tree_create(file->d_name));
+		{
+			leaf = tree_addend_chil(root, tree_create(file->d_name));
+			if (bit->R)
+			{
+				if (!(ft_strncmp(file->d_name, "..", PATH_MAX) == 0 || (ft_strncmp(file->d_name, ".", PATH_MAX) == 0)))
+				{
+					path = make_path(name, file->d_name);
+					leaf = tree_open(bit, leaf, path);
+					free(path);
+				}
+			}
+		}
 		closedir(fdir);
 	}
 	return (root);
@@ -52,7 +75,8 @@ t_tree	*tree_born(t_bit *bit, int ac, char **av)
 		i++;
 	while (av[i])
 	{
-		tree = tree_addend(tree, tree_open(av[i]));
+		tree = tree_addend(tree, tree_create(av[i]));
+		tree = tree_open(bit, tree, av[i]);
 		i++;
 	}
 	return (tree);

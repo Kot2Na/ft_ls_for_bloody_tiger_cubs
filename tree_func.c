@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:10:41 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/06 19:03:14 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/06 21:57:29 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	tree_destroy(t_tree *tree)
 		tree_destroy(tree->next);
 		tree_destroy(tree->chi);
 		ft_putstr(tree->name);
-		ft_putstr("was delete\n");
+		ft_putstr(" was delete\n");
 		if (tree->data)
 			free(tree->data);
 		free(tree->name);
