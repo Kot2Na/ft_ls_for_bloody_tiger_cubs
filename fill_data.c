@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/07 19:20:04 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 19:50:08 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void		get_time(struct  stat *buff)
 static void		get_size(struct stat *buff)
 {
 	/* node->blocks = buff->st_blocks;
+	node->type = (buff->st_mode & S_IFDIR) ? 2 : 1;
 	node->size = buff->st_size;
 	node->hd_link = buff->st_nlink; */
 	return ;

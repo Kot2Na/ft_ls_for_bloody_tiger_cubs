@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 18:48:01 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 19:48:25 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct			s_bit
 typedef struct			s_data
 {
 	int					error;
+	unsigned short		type;
 	long long			blocks;
 	char				*rights;
 	unsigned short		hd_link;
