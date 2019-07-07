@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/06 21:24:47 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/07 15:11:46 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <errno.h>
 # include <string.h>
 # include <limits.h>
+# include <time.h>
 
 typedef struct dirent	t_dir;
 typedef struct stat		t_stat;
@@ -40,7 +41,7 @@ typedef struct			s_data
 	int					link;
 	char				*group;
 	long long			size;
-	long long			time;
+	char				*time;
 }						t_data;
 
 typedef struct			s_tree
@@ -65,5 +66,7 @@ int						is_legal(char c);
 int						validate_flags(char **argv);
 void					set_flags(char **argv, t_bit *flags);
 void					set_zero(t_bit *flags);
+void					fill_data(char *name, t_tree *node);
+void					get_time(static stat buff, t_tree *node);
 
 #endif
