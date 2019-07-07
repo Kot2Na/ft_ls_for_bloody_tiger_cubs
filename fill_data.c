@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/07 16:58:35 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 17:08:21 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,12 @@ void    get_mode(struct stat *buff, char *path)
 	if ((is_l = get_soft_ln(buff, path)) == -1)
 		perror("get_soft_ln");
 	get_rwx(buf, buff);
-	buf[0] = is_l ? 'l' : '-';
+	buf[0] = (buff->st_mode & S_IFDIR) ? 'd' : '-';
+	buf[0] = is_l ? 'l' : buf[0];
 	buf[9] = (buff->st_mode & S_ISVTX) ? 't' : buf[9];
+	buf[3] = (buff->st_mode & S_ISUID) ? 's' : buf[3];
+	buf[6] = (buff->st_mode & S_ISGID) ? 's' : buf[6];
+	//node->rights = buf;
 	printf("%s\n", buf);
 }
 
@@ -162,7 +166,6 @@ void	fill_data(char *name)
 		//node->error = 0;
 	}
 //total
-//st_mode (file or directory, permissions, sticky, suid, links)
 }
 
 int main(int argc, char **argv)
