@@ -6,12 +6,11 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/06 14:54:14 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 12:02:24 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libls.h"
 
 typedef struct s_bit
 {
@@ -104,7 +103,7 @@ void    set_zero(t_bit *flags)
     flags->r = 0;
     flags->t = 0;
 }
-
+/*
 int main(int argc, char **argv)
 {
 	t_bit *flags;
@@ -118,4 +117,4 @@ int main(int argc, char **argv)
 	set_zero(flags);
 	set_flags(argv, flags);
 	return (0);
-}
+} */
