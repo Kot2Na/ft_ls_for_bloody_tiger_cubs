@@ -6,11 +6,12 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 20:35:54 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 21:23:27 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
+#include <stdio.h>
 
 t_tree	*tree_to_start(t_tree *tree)
 {
@@ -52,10 +53,10 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 	{
 		while((file = readdir(fdir)))
 		{
-			path = make_path(name, file->d_name);
+			//path = make_path(name, file->d_name);
 			leaf = tree_addend_chil(root, tree_create(file->d_name));
-			fill_data(leaf, path);
-			free(path);
+			//fill_data(leaf, path);
+			//free(path);
 			if (bit->R)
 			{
 				if (!(ft_strncmp(file->d_name, "..", PATH_MAX) == 0 || (ft_strncmp(file->d_name, ".", PATH_MAX) == 0)))
@@ -91,6 +92,8 @@ t_tree	*tree_born(t_bit *bit, int ac, char **av)
 		tree = tree_addend(tree, tree_create(av[i]));
 		tree = tree_open(bit, tree, tree->name);
 		i++;
+		printf("getting another arg\n");
 	}
+	printf("tree born\n");
 	return (tree);
 }

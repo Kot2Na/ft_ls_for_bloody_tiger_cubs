@@ -6,10 +6,11 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 20:10:23 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 22:39:13 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libls.h"
 
 t_bit *create_flag(int ac, char **av)
@@ -42,7 +43,11 @@ int main(int ac, char **av)
 	flag->R = 1;
 	tree = tree_born(flag, ac, av);
 
+	printf("im here\n");
 	tree = tree_to_start(tree);
+	
+	printf("%p\n", tree->data);
+	//printf("%s\n", (tree->data)->user);
 	tree_print(tree, NULL, flag);
 	tree_destroy(tree);
 	free(flag);

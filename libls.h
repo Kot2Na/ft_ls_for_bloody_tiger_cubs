@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 20:33:58 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 20:39:54 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <dirent.h>
 # include <errno.h>
 # include <string.h>
+# include <limits.h>
 # include <time.h>
 # include <pwd.h>
 # include <grp.h>
@@ -59,6 +60,7 @@ typedef struct			s_tree
 	struct s_tree		*pre;
 }						t_tree;
 
+char					*make_path(char *from, char *to);
 t_tree					*tree_create(char *name);
 t_tree					*tree_addend(t_tree *start, t_tree *new);
 t_tree					*tree_addend_chil(t_tree *root, t_tree *leaf);
