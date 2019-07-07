@@ -6,11 +6,21 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 20:13:22 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/07 20:54:27 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
+
+void fill_error(t_tree *tree)
+{
+	t_data *data;
+
+	data = (t_data*)malloc(sizeof(t_data));
+	data->error = errno;
+	errno = 0;
+	tree->data = data;
+}
 
 t_tree	*tree_to_start(t_tree *tree)
 {
@@ -62,10 +72,9 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 		}
 		closedir(fdir);
 	}
-	else
-	{
-		//fill_data(root, name); error
-	}
+	else if (errno != 20)
+		fill_error(root);
+	errno = 0;
 	return (root);
 }
 

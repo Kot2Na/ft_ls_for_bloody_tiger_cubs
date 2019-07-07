@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:10:41 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 20:05:57 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/07 21:03:12 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,27 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 		}
 		while (tree)
 		{
-			ft_putstr(tree->name);
-			ft_putchar('\t');
+			if (tree->data)
+				if ((tree->data)->error != 0)
+				{
+					ft_putnbr((tree->data)->error);
+					ft_putstr(": ");
+					ft_putstr(tree->name);
+					ft_putstr(": ");
+					path = strerror((tree->data)->error);
+					ft_putstr(path);
+					ft_putchar('\n');
+					tree = tree->next;
+					continue ;
+				}
+			if (tree->par)
+			{
+				ft_putstr(tree->name);
+				ft_putchar('\t');
+				if (i % 5 == 0)
+					ft_putchar('\n');
+			}
 			tree = tree->next;
-			if (i % 5 == 0)
-				ft_putchar('\n');
 			i++;
 		}
 		ft_putchar('\n');
