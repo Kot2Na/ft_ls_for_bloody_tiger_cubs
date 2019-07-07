@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 16:22:07 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/07 16:54:26 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,15 @@ t_tree	*tree_born(t_bit *bit, int ac, char **av)
 	tree = NULL;
 	while (av[i] && av[i][0] == '-')
 		i++;
+	if (i == ac)
+	{
+		tree = tree_addend(tree, tree_create("."));
+		tree = tree_open(bit, tree, tree->name);
+	}
 	while (av[i])
 	{
 		tree = tree_addend(tree, tree_create(av[i]));
-		tree = tree_open(bit, tree, av[i]);
+		tree = tree_open(bit, tree, tree->name);
 		i++;
 	}
 	return (tree);
