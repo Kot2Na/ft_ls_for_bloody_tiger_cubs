@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/07 12:02:24 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 12:16:51 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ typedef struct s_bit
 	unsigned int t:1;
 	unsigned int r:1;
 } t_bit;
-
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
 
 int	is_legal(char c)
 {
