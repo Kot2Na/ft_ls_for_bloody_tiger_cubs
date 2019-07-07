@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/07 17:20:02 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 17:43:11 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,10 @@ static void		get_id(struct stat *buff)
 }
 
 //static void	get_link(t_tree *node, struct stat *buff)
-void		get_link(struct stat *buff)
+/*void		get_link(struct stat *buff)
 {
-	unsigned short hd_link;
-	if (!(hd_link = (unsigned short)malloc(sizeof(buff->st_nlink))))
-		perror("malloc");
-	hd_link = buff->st_nlink;
-	//node->hd_link = hd_link;
-}
+	node->hd_link = buff->st_nlink;
+} */
 
 //static void	get_time(t_tree *node, static stat buff)
 static void		get_time(struct  stat *buff)
@@ -74,10 +70,8 @@ static void		get_time(struct  stat *buff)
 
 static void		get_size(t_tree *node, struct stat *buff)
 {
-	long long size;
-	size = (long long)malloc(sizeof(buff->st_size));
-	size = buff->st_size;
-	//node->size = size;
+	node->size = buff->st_size;
+	node->hd_link = buff->st_nlink;
 }
 
 static int		get_soft_ln(t_tree *node, struct stat *buff, char *path)
@@ -126,11 +120,11 @@ static void    get_mode(t_tree *node, struct stat *buff, char *path)
 	
 	is_l = 0;
 	buf = (char *)ft_memalloc(10);
-	while (is_l != 10)
+/*	while (is_l != 10)
 	{
 		buf[is_l] = '-';
 		is_l++;
-	}
+	} */
 	is_l = 0;
 	if ((is_l = get_soft_ln(node, buff, path)) == -1)
 		perror("get_soft_ln");
@@ -140,6 +134,12 @@ static void    get_mode(t_tree *node, struct stat *buff, char *path)
 	buf[9] = (buff->st_mode & S_ISVTX) ? 't' : buf[9];
 	buf[3] = (buff->st_mode & S_ISUID) ? 's' : buf[3];
 	buf[6] = (buff->st_mode & S_ISGID) ? 's' : buf[6];
+	if (buf[3] == 's' || buf[6] == 's')
+	{
+		buf[3] = (buf[3] == 's' && (buf[9] == 'x' || buf[9] == 't')) ? buf[3] : 'S';
+		buf[6] = (buf[6] == 's' && (buf[9] == 'x' || buf[9] == 't')) ? buf[6] : 'S';
+	}
+	printf("%s\n", buf);
 	//node->rights = buf;
 }
 
@@ -158,7 +158,7 @@ void	fill_data(char *name)
 	else
 	{
 		get_id(node, &buff);
-		get_link(node, &buff);
+		//get_link(node, &buff);
 		get_size(node, &buff);
 		get_mode(node, &buff, name);
 		get_time(node, &buff);
