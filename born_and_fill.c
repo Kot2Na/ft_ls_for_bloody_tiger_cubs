@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 12:57:44 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 18:05:21 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_tree	*tree_open(char *name)
 	DIR		*fdir;
 	t_dir	*file;
 	t_tree	*root;
-	t_tree	*file_to_fill;
+//	t_tree	*file_to_fill;
 
 	root = NULL;
 	root = tree_create(name);
@@ -37,8 +37,9 @@ t_tree	*tree_open(char *name)
 	{
 		while((file = readdir(fdir)))
 		{
-			file-to_fill = tree_addend_chil(root, tree_create(file->d_name));
-			fill_data(file_to_fill, file->d_name);
+			//file-to_fill = tree_addend_chil(root, tree_create(file->d_name));
+			tree_addend_chil(root, tree_create(file->d_name));
+			//fill_data(file_to_fill, file->d_name);
 		}
 		closedir(fdir);
 	}
