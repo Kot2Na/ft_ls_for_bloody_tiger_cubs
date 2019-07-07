@@ -6,20 +6,20 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/07 12:16:51 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 12:26:13 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
 
-typedef struct s_bit
+/*typedef struct s_bit
 {
 	unsigned int a:1;
 	unsigned int R:1;
 	unsigned int l:1;
 	unsigned int t:1;
 	unsigned int r:1;
-} t_bit;
+} t_bit; */
 
 int	is_legal(char c)
 {
