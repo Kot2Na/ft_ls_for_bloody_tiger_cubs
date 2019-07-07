@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/07 17:17:21 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/07 17:21:49 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 	node->error = errno;
 } */
 
-//void	get_id(struct stat *buff, t_tree *node)
-void	get_id(struct stat *buff)
+//void	get_id(t_stat *buff, t_tree *node)
+void	get_id(t_stat *buff)
 {
 	char *uid;
 	char *gid;
@@ -39,8 +39,8 @@ void	get_id(struct stat *buff)
 	//node->group = gid;
 }
 
-//void		get_link(struct stat *buff, t_tree *node)
-void		get_link(struct stat *buff)
+//void		get_link(t_stat *buff, t_tree *node)
+void		get_link(t_stat *buff)
 {
 	unsigned short hd_link;
 	if (!(hd_link = (unsigned short)malloc(sizeof(buff->st_nlink))))
@@ -72,7 +72,7 @@ void	get_time(struct  stat *buff)
 	//node->time = time;
 }
 
-void	get_size(struct stat *buff)
+void	get_size(t_stat *buff)
 {
 	long long size;
 	size = (long long)malloc(sizeof(buff->st_size));
@@ -80,7 +80,7 @@ void	get_size(struct stat *buff)
 	//node->size = size;
 }
 
-int		get_soft_ln(struct stat *buff, char *path)
+int		get_soft_ln(t_stat *buff, char *path)
 {
 	char *buf;
 	ssize_t len;
@@ -106,7 +106,7 @@ int		get_soft_ln(struct stat *buff, char *path)
 	return (0);
 }
 
-void	get_rwx(char *buf, struct stat *buff)
+void	get_rwx(char *buf, t_stat *buff)
 {
 	buf[1] = (buff->st_mode & S_IRUSR) ? 'r' : '-';
 	buf[4] = (buff->st_mode & S_IRGRP) ? 'r' : '-';
@@ -119,7 +119,7 @@ void	get_rwx(char *buf, struct stat *buff)
 	buf[9] = (buff->st_mode & S_IXOTH) ? 'x' : '-';
 }
 
-void    get_mode(struct stat *buff, char *path)
+void    get_mode(t_stat *buff, char *path)
 {
 	int is_l;
 	char *buf;
@@ -148,7 +148,7 @@ void    get_mode(struct stat *buff, char *path)
 void	fill_data(char *name)
 {
 	//char *path = "/Users/bomanyte/ft_ls/test.c";
-	struct stat buff;
+	t_stat buff;
 	
 	if (errno || lstat(name, &buff) == -1)
 	{
