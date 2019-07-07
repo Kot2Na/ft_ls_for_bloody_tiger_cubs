@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:10:41 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 15:06:56 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/07 16:17:32 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	tree_destroy(t_tree *tree)
 	{
 		tree_destroy(tree->next);
 		tree_destroy(tree->chi);
-		ft_putstr(tree->name);
-		ft_putstr(" was delete\n");
 		if (tree->data)
 			free(tree->data);
 		free(tree->name);
@@ -68,26 +66,40 @@ void	tree_destroy(t_tree *tree)
 	}
 }
 
-void	tree_print(t_tree *tree)
+void	tree_print(t_tree *tree, char *name, t_bit *bit)
 {
-	t_tree *start;
+	char	*path;
+	int		i;
+	t_tree	*start;
 
 	start = tree;
+	i = 1;
 	if (tree)
 	{
+		if (bit->R && name)
+		{
+			ft_putstr(name);
+			ft_putchar('\n');
+		}
 		while (tree)
 		{
 			ft_putstr(tree->name);
 			ft_putchar(' ');
 			tree = tree->next;
+			if (i % 5 == 0)
+				ft_putchar('\n');
+			i++;
 		}
+		ft_putchar('\n');
 		tree = start;
 		while (tree)
 		{
 			if (tree->chi)
 			{
+				path = make_path(name, tree->name);
 				ft_putchar('\n');
-				tree_print(tree->chi);
+				tree_print(tree->chi, path, bit);
+				free(path);
 			}
 			tree = tree->next;
 		}

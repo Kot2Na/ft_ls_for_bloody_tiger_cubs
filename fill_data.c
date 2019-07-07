@@ -6,14 +6,15 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/07 12:58:04 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/07 16:33:26 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
 
-void	get_time(static stat buff, t_tree *node)
+/*there are many error, does not compile*/
+
+void	get_time(t_stat buff, t_tree *node)
 {
 	char *buff;
 	char *time;

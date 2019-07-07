@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 15:10:01 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/07 16:22:07 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,15 @@ char	*make_path(char *from, char *to)
 	char *result;
 
 	result = NULL;
-	result = ft_strjoin(from, "/");
-	from = result;
-	result = ft_strjoin(result, to);
-	free(from);
+	if (from)
+	{
+		result = ft_strjoin(from, "/");
+		from = result;
+		result = ft_strjoin(result, to);
+		free(from);
+	}
+	else
+		result = ft_strdup(to);
 	return (result);
 }
 
@@ -43,7 +48,6 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 	t_tree	*leaf;
 	char	*path;
 	
-	path = name;
 	if ((fdir = opendir(name)))
 	{
 		while((file = readdir(fdir)))
