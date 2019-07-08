@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 19:34:14 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/08 20:28:10 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	for_l(t_tree *tree, char *name, t_bit *bit)
 		ft_putstr(tree->name);
 		ft_putchar('\n');
 		tree = tree->next;
+		free(path);
 	}
 }
 
