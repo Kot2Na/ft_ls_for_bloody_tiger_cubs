@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 14:51:21 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/08 19:29:12 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 		{
 			path = make_path(name, file->d_name);
 			leaf = tree_addend_chil(root, tree_create(file->d_name));
-			//fill_data(leaf, path);
+			fill_data(leaf, path);
 			if (bit->R)
 				if (!(ft_strncmp(file->d_name, "..", PATH_MAX) == 0 || (ft_strncmp(file->d_name, ".", PATH_MAX) == 0)))
 					leaf = tree_open(bit, leaf, path);
@@ -90,11 +90,13 @@ t_tree	*tree_born(t_bit *bit, int ac, char **av)
 	if (i == ac)
 	{
 		tree = tree_addend(tree, tree_create("."));
+		fill_data(tree, ".");
 		tree = tree_open(bit, tree, tree->name);
 	}
 	while (av[i])
 	{
 		tree = tree_addend(tree, tree_create(av[i]));
+		fill_data(tree, av[i]);
 		tree = tree_open(bit, tree, tree->name);
 		i++;
 	}

@@ -6,11 +6,12 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 17:35:28 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/08 19:34:14 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
+#include <stdio.h>
 
 int		tree_error(t_tree *tree)
 {
@@ -18,7 +19,8 @@ int		tree_error(t_tree *tree)
 
 	error = 0;
 	if (tree->data)
-		if (tree->data->error != 13)
+	{
+		if (tree->data->error != 13 && tree->data->error != 0)
 		{
 			ft_putstr("\nft_ls: ");
 			ft_putstr(tree->name);
@@ -27,6 +29,7 @@ int		tree_error(t_tree *tree)
 			ft_putchar('\n');
 			error = 1;
 		}
+	}
 	return (error);
 }
 
@@ -48,6 +51,42 @@ void	tree_error_13(t_tree *tree, char *name)
 	}
 }
 
+void	print_par_l(t_data *data)
+{
+	ft_putstr(data->rights);
+	ft_putchar(' ');
+	ft_putnbr((int) data->hd_link);
+	ft_putchar(' ');
+	ft_putstr(data->user);
+	ft_putchar(' ');
+	ft_putstr(data->group);
+	ft_putchar(' ');
+	ft_putnbr((int) data->size);
+	ft_putchar(' ');
+	ft_putstr(data->time);
+	ft_putchar(' ');
+}
+
+void	for_l(t_tree *tree, char *name, t_bit *bit)
+{
+	char *path;
+
+	while (tree)
+	{
+		if (tree_error(tree))
+		{
+			tree = tree->next;
+			continue ;
+		}
+		path = make_path(name, tree->name);
+		if (one_or_not(tree))
+			print_path(name);
+		print_par_l(tree->data);
+		ft_putstr(tree->name);
+		ft_putchar('\n');
+		tree = tree->next;
+	}
+}
 
 void	not_for_l(t_tree *tree, char *name, t_bit *bit)
 {
@@ -70,6 +109,7 @@ void	not_for_l(t_tree *tree, char *name, t_bit *bit)
 		if (i % 6 == 0)
 			ft_putchar('\n');
 		tree = tree->next;
+		free(path);
 		i++;
 	}
 	ft_putchar('\n');
@@ -82,9 +122,7 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 	if (tree)
 	{
 		if (bit->l)
-		{
-			//some function for -l
-		}
+			for_l(tree, name, bit);
 		else
 			not_for_l(tree, name, bit);
 		while (tree)

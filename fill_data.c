@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/08 18:06:09 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/08 19:29:00 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void		file_set_zero(t_tree *node, int err)
 	node->data->soft_ln = NULL;
 } 
 
-//static void		get_id(struct stat *buff)
-static void	get_id(t_tree *node, struct stat *buff)
+//static void		get_id(t_stat *buff)
+static void	get_id(t_tree *node, t_stat *buff)
 {
 	char *uid;
 	char *gid;
@@ -39,7 +39,7 @@ static void	get_id(t_tree *node, struct stat *buff)
 	node->data->group = ft_strdup(group_id->gr_name);
 }
 
-static void	get_time(t_tree *node, struct stat *buff)
+static void	get_time(t_tree *node, t_stat *buff)
 //static void		get_time(struct  stat *buff)
 {
 	char *buf;
@@ -48,6 +48,7 @@ static void	get_time(t_tree *node, struct stat *buff)
 	int i;
 	int j;
 
+	copy[12] = '\0';
 	i = 0;
 	j = 4;
 	buf = ctime(&buff->st_mtime);
@@ -60,8 +61,8 @@ static void	get_time(t_tree *node, struct stat *buff)
 	node->data->time = ft_strdup(copy);
 }
 
-static void		get_size(t_tree *node, struct stat *buff)
-//static void		get_size(struct stat *buff)
+static void		get_size(t_tree *node, t_stat *buff)
+//static void		get_size(t_stat *buff)
 {
 	node->data->blocks = buff->st_blocks;
 	node->data->type = (buff->st_mode & S_IFDIR) ? 2 : 1;
@@ -70,8 +71,8 @@ static void		get_size(t_tree *node, struct stat *buff)
 	return ;
 }
 
-static int		get_soft_ln(t_tree *node, struct stat *buff, char *path)
-//static int		get_soft_ln(struct stat *buff, char *path)
+static int		get_soft_ln(t_tree *node, t_stat *buff, char *path)
+//static int		get_soft_ln(t_stat *buff, char *path)
 {
 	char *buf;
 	ssize_t len;
@@ -82,12 +83,12 @@ static int		get_soft_ln(t_tree *node, struct stat *buff, char *path)
 		len = buff->st_size;
 		if (!(buf = (char *)malloc(len)))
 		{
-			perror("malloc");
+			//perror("malloc");
 			exit(-1);
 		}
 		if (readlink(path, buf, len) == -1)
 		{
-			perror("readlink");
+			//perror("readlink");
 			exit(-1);
 		}
 		buf[len] = '\0';
@@ -98,7 +99,7 @@ static int		get_soft_ln(t_tree *node, struct stat *buff, char *path)
 	return (0);
 }
 
-static void	get_rwx(char *buf, struct stat *buff)
+static void	get_rwx(char *buf, t_stat *buff)
 {
 	buf[1] = (buff->st_mode & S_IRUSR) ? 'r' : '-';
 	buf[4] = (buff->st_mode & S_IRGRP) ? 'r' : '-';
@@ -111,17 +112,18 @@ static void	get_rwx(char *buf, struct stat *buff)
 	buf[9] = (buff->st_mode & S_IXOTH) ? 'x' : '-';
 }
 
-static void    get_mode(t_tree *node, struct stat *buff, char *path)
-//static void    get_mode(struct stat *buff, char *path)
+static void    get_mode(t_tree *node, t_stat *buff, char *path)
+//static void    get_mode(t_stat *buff, char *path)
 {
 	int is_l;
 	char *buf;
 	
 	is_l = 0;
-	buf = (char *)ft_memalloc(10);
-	is_l = 0;
+	buf = (char *)ft_memalloc(11);
 	if ((is_l = get_soft_ln(node, buff, path)) == -1)
-		perror("get_soft_ln");
+	{
+		//perror("get_soft_ln");
+	}
 	get_rwx(buf, buff);
 	buf[0] = (buff->st_mode & S_IFDIR) ? 'd' : '-';
 	buf[0] = is_l ? 'l' : buf[0];
@@ -138,8 +140,7 @@ static void    get_mode(t_tree *node, struct stat *buff, char *path)
 void	fill_data(t_tree *node, char *name)
 //void	fill_data(char *name)
 {
-	struct stat buff;
-
+	t_stat buff;
 //	node->data = malloc(sizeof(t_data));
 	if (errno || lstat(name, &buff) == -1)
 	{
@@ -147,6 +148,7 @@ void	fill_data(t_tree *node, char *name)
 		errno = 0;
 		return ;
 	}
+	file_set_zero(node, (int) 0);
 	get_id(node, &buff);
 	get_size(node, &buff);
 	get_mode(node, &buff, name);

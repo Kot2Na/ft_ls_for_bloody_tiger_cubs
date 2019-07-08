@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:10:41 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 18:04:08 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/08 18:44:16 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_tree	*tree_create(char *name)
 	if ((new = (t_tree*)malloc(sizeof(t_tree))))
 	{
 		new->name = ft_strdup(name);
+		//new->data = NULL;
 		new->data = (t_data *)malloc(sizeof(t_data));
 		new->par = NULL;
 		new->chi = NULL;
@@ -71,6 +72,23 @@ t_tree	*tree_addend_chil(t_tree *root, t_tree *leaf)
 	return (leaf);
 }
 
+void	free_data(t_data *data)
+{
+	if (data)
+	{
+		if (data->rights)
+			free(data->rights);
+		if (data->soft_ln)
+			free(data->soft_ln);
+		if (data->user)
+			free(data->user);
+		if (data->group)
+			free(data->group);
+		if (data->time)
+			free(data->time);
+	}
+}
+
 void	tree_destroy(t_tree *tree)
 {
 	if (tree)
@@ -78,7 +96,10 @@ void	tree_destroy(t_tree *tree)
 		tree_destroy(tree->next);
 		tree_destroy(tree->chi);
 		if (tree->data)
+		{
+			free_data(tree->data);
 			free(tree->data);
+		}
 		free(tree->name);
 		free(tree);
 	}
