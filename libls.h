@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 20:12:15 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:56:47 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,12 @@ void					tree_print(t_tree *tree, char *path, t_bit *bit);
 char					*make_path(char *from, char *to);
 void					tree_destroy(t_tree *tree);
 int						is_legal(char c);
+int						one_or_not(t_tree *tree);
 int						validate_flags(char **argv);
 void					set_flags(char **argv, t_bit *flags);
 void					set_zero(t_bit *flags);
+void					print_path(char *path);
+void					print_name(char *name);
 //void					fill_data(char *name, t_tree *node);
 void					fill_data(char *name);
 

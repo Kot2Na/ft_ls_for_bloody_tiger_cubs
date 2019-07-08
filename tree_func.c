@@ -6,11 +6,29 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:10:41 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 22:09:33 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:59:52 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
+
+int		one_or_not(t_tree *tree)
+{
+	int result;
+
+	result = 0;
+	if (tree)
+	{
+		if (tree->par)
+		{
+			tree = tree->par;
+			if (tree->next || tree->pre || tree->par)
+				result = 1;
+		}
+	}
+
+	return (result);
+}
 
 t_tree	*tree_create(char *name)
 {
@@ -66,58 +84,3 @@ void	tree_destroy(t_tree *tree)
 	}
 }
 
-void	tree_print(t_tree *tree, char *name, t_bit *bit)
-{
-	char	*path;
-	int		i;
-	t_tree	*start;
-
-	start = tree;
-	i = 1;
-	if (tree)
-	{
-		if (bit->R && name)
-		{
-			ft_putstr(name);
-			ft_putstr(":\n");
-		}
-		while (tree)
-		{
-			if (tree->data)
-				if ((tree->data)->error != 0)
-				{
-					ft_putnbr((tree->data)->error);
-					ft_putstr(": ");
-					ft_putstr(tree->name);
-					ft_putstr(": ");
-					path = strerror((tree->data)->error);
-					ft_putstr(path);
-					ft_putchar('\n');
-					tree = tree->next;
-					continue ;
-				}
-			if (tree->par)
-			{
-				ft_putstr(tree->name);
-				ft_putchar('\t');
-				if (i % 5 == 0)
-					ft_putchar('\n');
-			}
-			tree = tree->next;
-			i++;
-		}
-		ft_putchar('\n');
-		tree = start;
-		while (tree)
-		{
-			if (tree->chi)
-			{
-				path = make_path(name, tree->name);
-				ft_putchar('\n');
-				tree_print(tree->chi, path, bit);
-				free(path);
-			}
-			tree = tree->next;
-		}
-	}
-}
