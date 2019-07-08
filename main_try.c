@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 22:39:13 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:16:25 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,11 @@ int main(int ac, char **av)
 	//flag = create_flag(ac, av);
 	flag = (t_bit*)malloc(sizeof(t_bit));
 	set_zero(flag);
-	flag->R = 1;
+	flag->R = 0;
 	tree = tree_born(flag, ac, av);
 
-	printf("im here\n");
 	tree = tree_to_start(tree);
 	
-	printf("%p\n", tree->data);
-	//printf("%s\n", (tree->data)->user);
 	tree_print(tree, NULL, flag);
 	tree_destroy(tree);
 	free(flag);

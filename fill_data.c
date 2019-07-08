@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/08 15:11:07 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:25:36 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,12 @@ static void	get_id(t_tree *node, struct stat *buff)
 	char *gid;
 	struct passwd *user_id;
 	struct group *group_id;
+
 	user_id = getpwuid(buff->st_uid);
 	group_id = getgrgid(buff->st_gid);
-//	uid = ft_strdup(user_id->pw_name);
-//	gid = ft_strdup(group_id->gr_name);
 	node->data->user = ft_strdup(user_id->pw_name);
-	node->data->group = ft_strdup(user_id->pw_name);
-	printf("%s\n", node->data->user);
-	printf("%p\n", node->data);
+	node->data->group = ft_strdup(group_id->gr_name);
 }
-
-//static void	get_link(t_tree *node, struct stat *buff)
-/*void		get_link(struct stat *buff)
-{
-	node->data->hd_link = buff->st_nlink;
-} */
 
 static void	get_time(t_tree *node, struct stat *buff)
 //static void		get_time(struct  stat *buff)
@@ -67,9 +58,7 @@ static void	get_time(t_tree *node, struct stat *buff)
 		i++;
 		j++;
 	}
-	//time = ft_strdup(copy);
 	node->data->time = ft_strdup(copy);
-	printf("%s\n", node->data->time);
 }
 
 static void		get_size(t_tree *node, struct stat *buff)
@@ -88,6 +77,7 @@ static int		get_soft_ln(t_tree *node, struct stat *buff, char *path)
 	char *buf;
 	ssize_t len;
 
+	//printf("\n\npath for soft link is %s\n\n", path);
 	if (S_ISLNK(buff->st_mode))
 	{
 		len = buff->st_size;
@@ -102,8 +92,7 @@ static int		get_soft_ln(t_tree *node, struct stat *buff, char *path)
 			exit(-1);
 		}
 		buf[len] = '\0';
-		node->data->soft_ln = ft_strdup(buf);
-		free(buf);
+		node->data->soft_ln = buf;
 		return (1);
 	}
 	node->data->soft_ln = NULL; 
@@ -143,9 +132,8 @@ static void    get_mode(t_tree *node, struct stat *buff, char *path)
 	buf[6] = ((buf[6] != 's') && (buf[6] != 'x') && (buff->st_mode & S_ISUID)) ? 'S' : buf[6];
 	buf[9] = ((buf[9] == 'x') && (buff->st_mode & S_ISVTX)) ? 't' : buf[9];
 	buf[9] = ((buf[9] != 'x') && (buf[9] != 't') && (buff->st_mode & S_ISVTX)) ? 'T' : buf[9];
-	node->data->rights = ft_strdup(buf);
-	free(buf);
-//	printf("%s\n", node->data->rights);
+	node->data->rights = buf;
+	//printf("rights %s\n", node->data->rights);
 }
 
 void	fill_data(t_tree *node, char *name)
@@ -153,27 +141,24 @@ void	fill_data(t_tree *node, char *name)
 {
 	struct stat buff;
 
-	node->data = malloc(sizeof(t_data));
-	printf("%p\n", node->data);
+//	node->data = malloc(sizeof(t_data));
 	if (errno || lstat(name, &buff) == -1)
 	{
 		file_set_zero(node, (int) errno);
 		errno = 0;
 		return ;
-		//return (data);
 	}
 	get_id(node, &buff);
 	get_size(node, &buff);
 	get_mode(node, &buff, name);
 	get_time(node, &buff);
-	//return (data);
 }
 
-/*
-int main(int argc, char **argv)
+
+/*int main(int argc, char **argv)
 {
 	if (argc < 2)
 		return (0);
 	fill_data(argv[1]);
 	return (0);
-} */
+}  */

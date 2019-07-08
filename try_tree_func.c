@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:10:41 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 15:10:03 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:26:50 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,9 @@ t_tree	*tree_create(char *name)
 	new = NULL;
 	if ((new = (t_tree*)malloc(sizeof(t_tree))))
 	{
-		new->data = NULL;
-		//new->data = malloc(sizeof(t_data));
+		//new->data = NULL;
+		new->data = malloc(sizeof(t_data));
 		new->name = ft_strdup(name);
-		//new->data->user = NULL;
-		//new->data->group = NULL;
-		//new->data->error = 0;
-		//new->data->size = 0;
-		//new->data->hd_link = 0;
-		//new->data->soft_ln = NULL;
-		//new->data->type = 0;
 		new->par = NULL;
 		new->chi = NULL;
 		new->next = NULL;
@@ -68,8 +61,8 @@ void	tree_destroy(t_tree *tree)
 	{
 		tree_destroy(tree->next);
 		tree_destroy(tree->chi);
-//		if (tree->data)
-//			free(tree->data);
+		if (tree->data)
+			free(tree->data);
 		free(tree->name);
 		free(tree);
 	}
@@ -88,14 +81,25 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 		if (bit->R && name)
 		{
 			ft_putstr(name);
-			printf("\nuid %s\n", tree->data->user);
+			/*printf("\nuid %s\n", tree->data->user);
 			printf("\ngid %s\n", tree->data->group);
-			printf("\ntime %s\n", tree->data->time);
+			printf("\ntime %s\n", tree->data->time); */
+			printf("\nrights %s\n", tree->data->rights);
+			printf("\nsoft link %s\n", tree->data->soft_ln);
+			/*printf("\nhard links %d\n", tree->data->hd_link);
+			printf("\nerrors %d\n", tree->data->error); */
 			ft_putchar('\n');
 		}
 		while (tree)
 		{
 			ft_putstr(tree->name);
+			//printf("\nuid %s\n", tree->data->user);
+			 //printf("\ngid %s\n", tree->data->group);
+			//printf("\ntime %s\n", tree->data->time);
+			printf("\nrights %s\n", tree->data->rights);
+			printf("\nsoft link %s\n", tree->data->soft_ln);
+			//printf("\nhard links %d\n", tree->data->hd_link);
+			//printf("\nerrors %d\n", tree->data->error);
 			ft_putchar(' ');
 			tree = tree->next;
 			if (i % 5 == 0)
@@ -110,6 +114,8 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 			{
 				path = make_path(name, tree->name);
 				ft_putchar('\n');
+			printf("\nrights %s\n", tree->data->rights);
+			printf("\nsoft link %s\n", tree->data->soft_ln);
 				tree_print(tree->chi, path, bit);
 				free(path);
 			}
