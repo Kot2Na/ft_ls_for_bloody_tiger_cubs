@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/08 19:29:00 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/08 21:09:59 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ static void    get_mode(t_tree *node, t_stat *buff, char *path)
 	buf[0] = is_l ? 'l' : buf[0];
 	buf[3] = ((buf[3] == 'x') && (buff->st_mode & S_ISUID)) ? 's' : buf[3];
 	buf[3] = ((buf[3] != 's') && (buf[3] != 'x') && (buff->st_mode & S_ISUID)) ? 'S' : buf[3];
-	buf[6] = ((buf[3] == 'x') && (buff->st_mode & S_ISUID)) ? 's' : buf[6];
+	buf[6] = ((buf[6] == 'x') && (buff->st_mode & S_ISUID)) ? 's' : buf[6];
 	buf[6] = ((buf[6] != 's') && (buf[6] != 'x') && (buff->st_mode & S_ISUID)) ? 'S' : buf[6];
 	buf[9] = ((buf[9] == 'x') && (buff->st_mode & S_ISVTX)) ? 't' : buf[9];
 	buf[9] = ((buf[9] != 'x') && (buf[9] != 't') && (buff->st_mode & S_ISVTX)) ? 'T' : buf[9];

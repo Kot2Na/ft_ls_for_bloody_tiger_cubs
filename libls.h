@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 18:09:06 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/08 20:49:25 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ void					set_zero(t_bit *flags);
 void					print_path(char *path);
 void					print_name(char *name);
 void					fill_data(t_tree *node, char *name);
+long long				get_total(t_tree *root);
+long long				get_totalR(t_tree *root);
 
 #endif
