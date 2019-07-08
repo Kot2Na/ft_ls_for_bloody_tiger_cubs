@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/07 22:41:16 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/08 15:11:07 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 
 static void		file_set_zero(t_tree *node, int err)
 {
-	(node->data)->user = NULL;
-	(node->data)->group = NULL;
-	(node->data)->hd_link = 0;
-	(node->data)->time = NULL;
-	(node->data)->size = 0;
-	(node->data)->rights = NULL;
-	(node->data)->error = err;
+	node->data->user = NULL;
+	node->data->group = NULL;
+	node->data->hd_link = 0;
+	node->data->time = NULL;
+	node->data->size = 0;
+	node->data->rights = NULL;
+	node->data->error = err;
+	node->data->type = 0;
+	node->data->soft_ln = NULL;
 } 
 
 //static void		get_id(struct stat *buff)
@@ -33,17 +35,18 @@ static void	get_id(t_tree *node, struct stat *buff)
 	struct group *group_id;
 	user_id = getpwuid(buff->st_uid);
 	group_id = getgrgid(buff->st_gid);
-	uid = ft_strdup(user_id->pw_name);
-	gid = ft_strdup(group_id->gr_name);
-	(node->data)->user = &uid;
-	(node->data)->group = &gid;
+//	uid = ft_strdup(user_id->pw_name);
+//	gid = ft_strdup(group_id->gr_name);
+	node->data->user = ft_strdup(user_id->pw_name);
+	node->data->group = ft_strdup(user_id->pw_name);
+	printf("%s\n", node->data->user);
 	printf("%p\n", node->data);
 }
 
 //static void	get_link(t_tree *node, struct stat *buff)
 /*void		get_link(struct stat *buff)
 {
-	node->hd_link = buff->st_nlink;
+	node->data->hd_link = buff->st_nlink;
 } */
 
 static void	get_time(t_tree *node, struct stat *buff)
@@ -64,18 +67,18 @@ static void	get_time(t_tree *node, struct stat *buff)
 		i++;
 		j++;
 	}
-	time = ft_strdup(copy);
-	(node->data)->time = time;
-//	printf("%s\n", (node->data)->time);
+	//time = ft_strdup(copy);
+	node->data->time = ft_strdup(copy);
+	printf("%s\n", node->data->time);
 }
 
 static void		get_size(t_tree *node, struct stat *buff)
 //static void		get_size(struct stat *buff)
 {
-	(node->data)->blocks = buff->st_blocks;
-	(node->data)->type = (buff->st_mode & S_IFDIR) ? 2 : 1;
-	(node->data)->size = buff->st_size;
-	(node->data)->hd_link = buff->st_nlink; 
+	node->data->blocks = buff->st_blocks;
+	node->data->type = (buff->st_mode & S_IFDIR) ? 2 : 1;
+	node->data->size = buff->st_size;
+	node->data->hd_link = buff->st_nlink; 
 	return ;
 }
 
@@ -99,10 +102,11 @@ static int		get_soft_ln(t_tree *node, struct stat *buff, char *path)
 			exit(-1);
 		}
 		buf[len] = '\0';
-		(node->data)->soft_ln = buf;
+		node->data->soft_ln = ft_strdup(buf);
+		free(buf);
 		return (1);
 	}
-	(node->data)->soft_ln = NULL; 
+	node->data->soft_ln = NULL; 
 	return (0);
 }
 
@@ -139,31 +143,30 @@ static void    get_mode(t_tree *node, struct stat *buff, char *path)
 	buf[6] = ((buf[6] != 's') && (buf[6] != 'x') && (buff->st_mode & S_ISUID)) ? 'S' : buf[6];
 	buf[9] = ((buf[9] == 'x') && (buff->st_mode & S_ISVTX)) ? 't' : buf[9];
 	buf[9] = ((buf[9] != 'x') && (buf[9] != 't') && (buff->st_mode & S_ISVTX)) ? 'T' : buf[9];
-	(node->data)->rights = buf;
-//	printf("%s\n", (node->data)->rights);
+	node->data->rights = ft_strdup(buf);
+	free(buf);
+//	printf("%s\n", node->data->rights);
 }
 
 void	fill_data(t_tree *node, char *name)
 //void	fill_data(char *name)
 {
 	struct stat buff;
-	t_data *data; 
 
-	data = (t_data *)malloc(sizeof(t_data));
-	node->data = data;
+	node->data = malloc(sizeof(t_data));
 	printf("%p\n", node->data);
 	if (errno || lstat(name, &buff) == -1)
 	{
 		file_set_zero(node, (int) errno);
 		errno = 0;
 		return ;
+		//return (data);
 	}
 	get_id(node, &buff);
-	//get_link(node, &buff);
 	get_size(node, &buff);
 	get_mode(node, &buff, name);
 	get_time(node, &buff);
-	(node->data)->error = 0;
+	//return (data);
 }
 
 /*

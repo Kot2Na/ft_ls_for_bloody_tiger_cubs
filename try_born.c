@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/07 21:23:27 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/08 15:04:45 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 	{
 		while((file = readdir(fdir)))
 		{
-			//path = make_path(name, file->d_name);
+			path = make_path(name, file->d_name);
 			leaf = tree_addend_chil(root, tree_create(file->d_name));
-			//fill_data(leaf, path);
+			fill_data(leaf, path);
 			//free(path);
 			if (bit->R)
 			{
@@ -63,7 +63,7 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 				{
 					path = make_path(name, file->d_name);
 					leaf = tree_open(bit, leaf, path);
-					fill_data(leaf, path);
+				//	fill_data(leaf, path);
 					free(path);
 				}
 			}
