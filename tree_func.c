@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:10:41 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 16:59:52 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/08 18:04:08 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_tree	*tree_create(char *name)
 	if ((new = (t_tree*)malloc(sizeof(t_tree))))
 	{
 		new->name = ft_strdup(name);
-		new->data = NULL;
+		new->data = (t_data *)malloc(sizeof(t_data));
 		new->par = NULL;
 		new->chi = NULL;
 		new->next = NULL;
