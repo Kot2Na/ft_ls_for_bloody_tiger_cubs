@@ -6,12 +6,11 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 21:00:45 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/09 15:36:33 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
 
 int		tree_error(t_tree *tree)
 {
@@ -83,16 +82,19 @@ void	for_l(t_tree *tree, char *name, t_bit *bit)
 		path = make_path(name, tree->name);
 		if (one_or_not(tree) && i == 1)
 			print_path(name);
-		if (i == 1)
+		if (tree->par && i == 1)
 		{
-			bit->a ? get_totalR(tree) : get_totalR(tree);
+			bit->a ? get_totalR(tree) : get_total(tree);
 			ft_putstr("total ");
-			ft_putnbr(tree->data->blocks);
+			ft_putnbr(tree->par->data->blocks);
 			ft_putchar('\n');
 		}
-		print_par_l(tree->data);
-		ft_putstr(tree->name);
-		ft_putchar('\n');
+		if (tree->par)
+		{
+			print_par_l(tree->data);
+			ft_putstr(tree->name);
+			ft_putchar('\n');
+		}
 		tree = tree->next;
 		i++;
 		free(path);
