@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/09 15:50:26 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/09 16:25:38 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,18 @@ void	for_l(t_tree *tree, char *name, t_bit *bit)
 		}
 		if (tree->par)
 		{
-			print_par_l(tree->data);
-			ft_putstr(tree->name);
-			ft_putchar('\n');
+			if (bit->a)
+			{
+				print_par_l(tree->data);
+				ft_putstr(tree->name);
+				ft_putchar('\n');
+			}
+			else if (tree->name[0] != '.')
+			{
+				print_par_l(tree->data);
+				ft_putstr(tree->name);
+				ft_putchar('\n');
+			}
 		}
 		tree = tree->next;
 		i++;
@@ -118,7 +127,12 @@ void	not_for_l(t_tree *tree, char *name, t_bit *bit)
 		if (one_or_not(tree) && i == 1)
 			print_path(name);
 		if (tree->par)
-			print_name(tree->name);
+		{
+			if (bit->a)
+				print_name(tree->name);
+			else if (tree->name[0] != '.')
+				print_name(tree->name);
+		}
 		if (i % 6 == 0)
 			ft_putchar('\n');
 		tree = tree->next;
@@ -146,7 +160,10 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 			{
 				path = make_path(name, tree->name);
 				ft_putchar('\n');
-				tree_print(tree->chi, path, bit);
+				if (bit->a)
+					tree_print(tree->chi, path, bit);
+				else if (tree->name[0] != '.' || !tree->par)
+					tree_print(tree->chi, path, bit);
 				free(path);
 			}
 			tree = tree->next;
