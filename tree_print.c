@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 21:00:45 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/09 15:17:11 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	for_l(t_tree *tree, char *name, t_bit *bit)
 			print_path(name);
 		if (i == 1)
 		{
-			bit->a ? get_totalR(tree) : get_totalR(tree);
+			bit->a ? get_totalR(tree) : get_total(tree);
 			ft_putstr("total ");
 			ft_putnbr(tree->data->blocks);
 			ft_putchar('\n');
