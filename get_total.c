@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libls.h"
+#include <stdio.h>
 
 long long	get_total(t_tree *root)
 {
@@ -29,7 +30,7 @@ long long	get_total(t_tree *root)
 			return (root->data->blocks);
 	}
 	if (root->next)
-		return(get_total(root->next));
+		get_total(root->next);
 	return (0);
 }
 
