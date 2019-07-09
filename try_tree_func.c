@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:10:41 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 16:26:50 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/08 20:31:46 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,17 @@ t_tree	*tree_create(char *name)
 	new = NULL;
 	if ((new = (t_tree*)malloc(sizeof(t_tree))))
 	{
-		//new->data = NULL;
 		new->data = malloc(sizeof(t_data));
+		new->data->error = 0;
+		new->data->type = 0;
+		new->data->blocks = 0;
+		new->data->rights = NULL;
+		new->data->hd_link = 0;
+		new->data->soft_ln = NULL;
+		new->data->user = NULL;
+		new->data->group = NULL;
+		new->data->size = 0;
+		new->data->time = NULL;
 		new->name = ft_strdup(name);
 		new->par = NULL;
 		new->chi = NULL;
@@ -98,6 +107,7 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 			//printf("\ntime %s\n", tree->data->time);
 			printf("\nrights %s\n", tree->data->rights);
 			printf("\nsoft link %s\n", tree->data->soft_ln);
+			printf("\nblocks %lld\n", tree->data->blocks);
 			//printf("\nhard links %d\n", tree->data->hd_link);
 			//printf("\nerrors %d\n", tree->data->error);
 			ft_putchar(' ');
@@ -116,6 +126,7 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 				ft_putchar('\n');
 			printf("\nrights %s\n", tree->data->rights);
 			printf("\nsoft link %s\n", tree->data->soft_ln);
+			printf("\nblocks %lld\n", tree->data->blocks);
 				tree_print(tree->chi, path, bit);
 				free(path);
 			}

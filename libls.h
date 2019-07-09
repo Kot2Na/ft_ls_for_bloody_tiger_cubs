@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 15:34:47 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/08 18:04:56 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int						validate_flags(char **argv);
 void					set_flags(char **argv, t_bit *flags);
 void					set_zero(t_bit *flags);
 void					fill_data(t_tree *node, char *name);
+long long   			get_total(t_tree *root, long long size);
 //void					fill_data(char *name);
 
 #endif

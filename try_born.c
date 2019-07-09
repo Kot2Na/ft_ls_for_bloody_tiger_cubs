@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 16:23:53 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/08 17:55:05 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,16 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 		{
 			path = make_path(name, file->d_name);
 			leaf = tree_addend_chil(root, tree_create(file->d_name));
+			printf("%p\n", leaf->data);
 			fill_data(leaf, path);
-			printf("\npath %s\n", path);
+/*			printf("\npath %s\n", path);
 			printf("\nuid %s\n", leaf->data->user);
 			printf("\ngid %s\n", leaf->data->group);
 			printf("\ntime %s\n", leaf->data->time);
 			printf("\nrights %s\n", leaf->data->rights);
 			printf("\nsoft link %s\n", leaf->data->soft_ln);
 			printf("\nhard links %d\n", leaf->data->hd_link);
-			printf("\nerrors %d\n", leaf->data->error);
+			printf("\nerrors %d\n", leaf->data->error); */
 			free(path);
 			if (bit->R)
 			{
@@ -71,12 +72,13 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 				{
 					path = make_path(name, file->d_name);
 					fill_data(leaf, path);
-			printf("\nuid %s\n", leaf->data->user);
+		/*	printf("\nuid %s\n", leaf->data->user);
 			printf("\ngid %s\n", leaf->data->group);
 			printf("\ntime %s\n", leaf->data->time);
 			printf("\nrights %s\n", leaf->data->rights);
-			printf("\nsoft link %s\n", leaf->data->soft_ln);
+			printf("\nsoft link %s\n", leaf->data->soft_ln); */
 					leaf = tree_open(bit, leaf, path);
+					//fill_data(leaf, path);
 					free(path);
 				}
 			}
