@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 19:50:19 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/08 20:57:24 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/09 18:19:57 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 long long	get_total(t_tree *root)
 {
-	if (root->name[0] != '.' && !(ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0))) {
+	if (!root->par || (root->name[0] != '.' && !(ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0)))) {
 		if (root->par)
 			root->par->data->blocks += root->data->blocks;
 		if (root->chi) {

@@ -6,12 +6,11 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/09 17:58:45 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/09 18:16:26 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
 
 t_bit *create_flag(int ac, char **av)
 {
@@ -48,7 +47,6 @@ int main(int ac, char **av)
 
 	tree = tree_to_start(tree);
 	flag->a ? get_totalR(tree) : get_total(tree);
-	printf("total %lld\n", tree->data->blocks);
 	tree_print(tree, NULL, flag);
 	tree_destroy(tree);
 	free(flag);
