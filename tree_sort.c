@@ -6,12 +6,11 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 18:23:23 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 20:43:35 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:09:42 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
 
 void	tree_swap(t_tree *tree1, t_tree *tree2)
 {
@@ -25,26 +24,6 @@ void	tree_swap(t_tree *tree1, t_tree *tree2)
 	tree1->pre = tree2;
 	if (tree1->par->chi - tree1 == 0)
 		tree1->par->chi = tree2;
-}
-
-int		size_sort(t_tree *first, t_tree *second)
-{
-	if (first && second)
-	{
-		if (first->data->size < second->data->size)
-			return (1);
-	}
-	return (0);
-}
-
-int		ascii_sort(t_tree *first, t_tree *second)
-{
-	if (first && second)
-	{
-		if (ft_strcmp(first->name, second->name) > 0)
-			return (1);
-	}
-	return (0);
 }
 
 int		is_sort(t_tree *tree, int (*sort)(t_tree *, t_tree *))
