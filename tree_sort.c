@@ -6,12 +6,11 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 18:23:23 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/09 20:49:38 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 18:31:33 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
 
 void	tree_swap(t_tree *tree1, t_tree *tree2)
 {
@@ -27,7 +26,14 @@ void	tree_swap(t_tree *tree1, t_tree *tree2)
 		tree1->par->chi = tree2;
 }
 
-void	ascii_sort(t_tree *tree)
+int		ascii_sort(t_tree *first, t_tree *second)
+{
+	if (ft_strcmp(first->name, second->name) > 0)
+		return (1);
+	return (0);
+}
+
+void	tree_sort(t_tree *tree, int (*sort)(t_tree *, t_tree *))
 {
 	t_tree *start;
 	t_tree *first;
@@ -42,17 +48,25 @@ void	ascii_sort(t_tree *tree)
 			start = tree;
 			while (second && start)
 			{
-				if (start->next && (ft_strcmp(start->name, start->next->name) > 0))
+				if (start->next && (sort(start, start->next)))
 					tree_swap(start, start->next);
 				start = start->next;
 				second = second->next;
 			}
 			first = first->next;
 		}
+		sort_my_child(tree, sort);
+	}
+}
+
+void	sort_my_child(t_tree *tree, int (*sort)(t_tree *, t_tree *))
+{
+	if (tree)
+	{
 		while (tree)
 		{
-			if(tree->chi)
-				ascii_sort(tree->chi);
+			if (tree->chi)
+				tree_sort(tree->chi, sort);
 			tree = tree->next;
 		}
 	}
