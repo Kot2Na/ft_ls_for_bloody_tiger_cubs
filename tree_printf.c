@@ -6,11 +6,27 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:07:43 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 17:30:53 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 19:04:41 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
+
+void	print_par_l(t_data *data)
+{
+	ft_putstr(data->rights);
+	ft_putchar(' ');
+	ft_putnbr((int) data->hd_link);
+	ft_putchar(' ');
+	ft_putstr(data->user);
+	ft_putchar(' ');
+	ft_putstr(data->group);
+	ft_putchar(' ');
+	ft_putnbr((int) data->size);
+	ft_putchar('\t');
+	ft_putstr(data->time);
+	ft_putchar(' ');
+}
 
 void	print_path(char *path)
 {
@@ -27,5 +43,15 @@ void	print_name(char *name)
 	{
 		ft_putstr(name);
 		ft_putchar('\t');
+	}
+}
+
+void	print_str_l(t_tree *tree)
+{
+	if (tree)
+	{
+		print_par_l(tree->data);
+		ft_putstr(tree->name);
+		ft_putchar('\n');
 	}
 }

@@ -6,14 +6,14 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 18:32:10 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 19:10:45 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBLS_H
 # define LIBLS_H
 
-# include "./libft/includes/libft.h"
+# include "libft.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <dirent.h>
@@ -60,25 +60,26 @@ typedef struct			s_tree
 	struct s_tree		*pre;
 }						t_tree;
 
-char					*make_path(char *from, char *to);
 t_tree					*tree_create(char *name);
 t_tree					*tree_addend(t_tree *start, t_tree *new);
 t_tree					*tree_addend_chil(t_tree *root, t_tree *leaf);
 t_tree					*tree_to_start(t_tree *tree);
 t_tree					*tree_open(t_bit *bit, t_tree *root, char *name);
 t_tree					*tree_born(t_bit *bit, int ac, char **av);
-void					tree_print(t_tree *tree, char *path, t_bit *bit);
 char					*make_path(char *from, char *to);
-void					tree_destroy(t_tree *tree);
 int						is_legal(char c);
 int						one_or_not(t_tree *tree);
 int						validate_flags(char **argv);
+int						ascii_sort(t_tree *first, t_tree *second);
+int						size_sort(t_tree *first, t_tree *second);
+void					tree_print(t_tree *tree, char *name, t_bit *bit);
+void					tree_destroy(t_tree *tree);
 void					set_flags(char **argv, t_bit *flags);
+void					print_str_l(t_tree *tree);
 void					set_zero(t_bit *flags);
 void					print_path(char *path);
 void					print_name(char *name);
 void					fill_data(t_tree *node, char *name);
-int						ascii_sort(t_tree *first, t_tree *second);
 void					tree_swap(t_tree *tree1, t_tree *tree2);
 void					tree_sort(t_tree *tree, int (*sort)(t_tree *, t_tree *));
 void					sort_my_child(t_tree *tree, int (*sort)(t_tree *, t_tree *));
