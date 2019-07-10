@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 19:06:14 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:51:18 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int		tree_error(t_tree *tree)
 	return (error);
 }
 
-
 void	tree_error_13(t_tree *tree, char *name)
 {
 	char *path;
@@ -52,8 +51,8 @@ void	tree_error_13(t_tree *tree, char *name)
 
 void	for_l(t_tree *tree, char *name, t_bit *bit)
 {
-	char *path;
-	int i;
+	char	*path;
+	int		i;
 
 	i = 1;
 	while (tree)
@@ -67,18 +66,8 @@ void	for_l(t_tree *tree, char *name, t_bit *bit)
 		if (one_or_not(tree) && i == 1)
 			print_path(name);
 		if (tree->par && i == 1)
-		{
-			ft_putstr("total ");
-			ft_putnbr(tree->par->data->blocks);
-			ft_putchar('\n');
-		}
-		if (tree->par)
-		{
-			if (bit->a)
-				print_str_l(tree);
-			else if (tree->name[0] != '.')
-				print_str_l(tree);
-		}
+			print_total(tree);
+		bit_a_l(tree, bit);
 		tree = tree->next;
 		i++;
 		free(path);
@@ -87,8 +76,8 @@ void	for_l(t_tree *tree, char *name, t_bit *bit)
 
 void	not_for_l(t_tree *tree, char *name, t_bit *bit)
 {
-	char *path;
-	int i;
+	char	*path;
+	int		i;
 
 	i = 1;
 	while (tree)
@@ -101,13 +90,7 @@ void	not_for_l(t_tree *tree, char *name, t_bit *bit)
 		path = make_path(name, tree->name);
 		if (one_or_not(tree) && i == 1)
 			print_path(name);
-		if (tree->par)
-		{
-			if (bit->a)
-				print_name(tree->name);
-			else if (tree->name[0] != '.')
-				print_name(tree->name);
-		}
+		bit_a(tree, bit);
 		if (i % 6 == 0)
 			ft_putchar('\n');
 		tree = tree->next;

@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:07:43 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 19:04:41 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:47:12 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	print_par_l(t_data *data)
 {
 	ft_putstr(data->rights);
 	ft_putchar(' ');
-	ft_putnbr((int) data->hd_link);
+	ft_putnbr((int)data->hd_link);
 	ft_putchar(' ');
 	ft_putstr(data->user);
 	ft_putchar(' ');
 	ft_putstr(data->group);
 	ft_putchar(' ');
-	ft_putnbr((int) data->size);
+	ft_putnbr((int)data->size);
 	ft_putchar('\t');
 	ft_putstr(data->time);
 	ft_putchar(' ');
@@ -52,6 +52,16 @@ void	print_str_l(t_tree *tree)
 	{
 		print_par_l(tree->data);
 		ft_putstr(tree->name);
+		ft_putchar('\n');
+	}
+}
+
+void	print_total(t_tree *tree)
+{
+	if (tree)
+	{
+		ft_putstr("total ");
+		ft_putnbr(tree->par->data->blocks);
 		ft_putchar('\n');
 	}
 }

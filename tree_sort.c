@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 18:23:23 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 21:09:42 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:33:16 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,6 @@ int		is_sort(t_tree *tree, int (*sort)(t_tree *, t_tree *))
 		}
 	}
 	return (1);
-}
-
-t_tree	*to_start(t_tree *tree)
-{
-	if (tree)
-	{
-		while (tree->pre)
-			tree = tree->pre;
-	}
-	return (tree);
 }
 
 void	tree_sort(t_tree *tree, int (*sort)(t_tree *, t_tree *))

@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 19:50:19 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/09 18:19:57 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:25:04 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ long long	get_total(t_tree *root)
 	return (0);
 }
 
-long long	get_totalR(t_tree *root)
+long long	get_totalr(t_tree *root)
 {
 	if (root->par)
 		root->par->data->blocks += root->data->blocks;
 	if (root->chi) {
-		root->data->blocks += get_totalR(root->chi);
+		root->data->blocks += get_totalr(root->chi);
 	}
 	if (root->next) {
 		root = root->next;
-		get_totalR(root);
+		get_totalr(root);
 		return (root->data->blocks);
 	}
 	if (!root->next && !root->chi)

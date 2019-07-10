@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/07 15:15:48 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:24:26 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	set_flags(char **argv, t_bit *flags)
             if (argv[i][j] == 'a')
                 flags->a = 1;
 			else if (argv[i][j] == 'R')
-                flags->R = 1;
+                flags->re = 1;
 			else if (argv[i][j] == 'l')
                 flags->l = 1;
 			else if (argv[i][j] == 'r')
@@ -85,7 +85,7 @@ void	set_flags(char **argv, t_bit *flags)
 void	set_zero(t_bit *flags)
 {
     flags->a = 0;
-    flags->R = 0;
+    flags->re = 0;
     flags->l = 0;
     flags->r = 0;
     flags->t = 0;

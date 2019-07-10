@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 19:10:45 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:47:22 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ typedef struct stat		t_stat;
 typedef struct			s_bit
 {
 	unsigned int		a:1;
-	unsigned int		R:1;
+	unsigned int		re:1;
 	unsigned int		l:1;
 	unsigned int		t:1;
 	unsigned int		r:1;
-} 						t_bit;
+}						t_bit;
 
 typedef struct			s_data
 {
@@ -66,6 +66,7 @@ t_tree					*tree_addend_chil(t_tree *root, t_tree *leaf);
 t_tree					*tree_to_start(t_tree *tree);
 t_tree					*tree_open(t_bit *bit, t_tree *root, char *name);
 t_tree					*tree_born(t_bit *bit, int ac, char **av);
+t_tree					*to_start(t_tree *tree);
 char					*make_path(char *from, char *to);
 int						is_legal(char c);
 int						one_or_not(t_tree *tree);
@@ -81,9 +82,12 @@ void					print_path(char *path);
 void					print_name(char *name);
 void					fill_data(t_tree *node, char *name);
 void					tree_swap(t_tree *tree1, t_tree *tree2);
-void					tree_sort(t_tree *tree, int (*sort)(t_tree *, t_tree *));
-void					sort_my_child(t_tree *tree, int (*sort)(t_tree *, t_tree *));
+void					tree_sort(t_tree *tr, int (*s)(t_tree *, t_tree *));
+void					sort_my_child(t_tree *tr, int (*s)(t_tree *, t_tree *));
+void					bit_a_l(t_tree *tree, t_bit *bit);
+void					bit_a(t_tree *tree, t_bit *bit);
+void					print_total(t_tree *tree);
 long long				get_total(t_tree *root);
-long long				get_totalR(t_tree *root);
+long long				get_totalr(t_tree *root);
 
 #endif
