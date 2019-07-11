@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 18:23:23 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 21:33:16 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:22:03 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 void	tree_swap(t_tree *tree1, t_tree *tree2)
 {
-	if (tree1->pre)
-		tree1->pre->next = tree2;
-	if (tree2->next)
-		tree2->next->pre = tree1;
-	tree2->pre = tree1->pre;
-	tree1->next = tree2->next;
-	tree2->next = tree1;
-	tree1->pre = tree2;
-	if (tree1->par->chi - tree1 == 0)
-		tree1->par->chi = tree2;
+	if (tree1 && tree2)
+	{
+		if (tree1->pre)
+			tree1->pre->next = tree2;
+		if (tree2->next)
+			tree2->next->pre = tree1;
+		tree2->pre = tree1->pre;
+		tree1->next = tree2->next;
+		tree2->next = tree1;
+		tree1->pre = tree2;
+		if (tree1->par && tree1->par->chi - tree1 == 0)
+			tree1->par->chi = tree2;
+	}
 }
 
 int		is_sort(t_tree *tree, int (*sort)(t_tree *, t_tree *))

@@ -6,13 +6,13 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/08 21:09:59 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 20:58:09 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
 
-static void		file_set_zero(t_tree *node, int err)
+void		file_set_zero(t_tree *node, int err)
 {
 	node->data->user = NULL;
 	node->data->group = NULL;
