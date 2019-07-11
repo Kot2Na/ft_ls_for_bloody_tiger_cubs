@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 16:44:25 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 17:41:09 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,13 @@ int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 			continue ;
 		}
 		path = make_path(name, tree->name);
-		if (one_or_not(tree) && i == 1)
+		if (one_or_not(tree) && !tree->pre)
 			print_path(name);
 		if (bit_a(tree, bit))
 			i++;
 		if (i % 6 == 0)
+			ft_putchar('\n');
+		if (!tree->next && tree->par)
 			ft_putchar('\n');
 		tree = tree->next;
 		free(path);
