@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 21:34:59 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 22:12:13 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct			s_tree
 	struct s_tree		*pre;
 }						t_tree;
 
+void					tree_controller(t_tree *root, t_bit *flag);
 void                    sort_t(t_tree *root);
 char	                *time_to_str(char *buf);
 t_tree					*tree_create(char *name);

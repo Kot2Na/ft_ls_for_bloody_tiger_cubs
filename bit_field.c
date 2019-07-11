@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/11 22:16:50 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 22:32:48 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int		validate_flags(char **argv)
 	int j;
 
 	i = 1;
-	j = 0;
+	j = 1;
 	while (argv[i])
 	{
-		while (argv[i][j])
+		while (argv[i][0] == '-' && argv[i][j])
 		{
 			if (!is_legal(argv[i][j]))
 			{
