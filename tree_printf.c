@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:07:43 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 21:53:46 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:56:06 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_str_l(t_tree *tree)
 
 void	print_total(t_tree *tree)
 {
-	if (tree)
+	if (tree && tree->data->blocks != 0)
 	{
 		ft_putstr("total ");
 		ft_putnbr(tree->par->data->blocks);
