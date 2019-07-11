@@ -6,29 +6,11 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:10:41 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 18:44:16 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:32:40 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-
-int		one_or_not(t_tree *tree)
-{
-	int result;
-
-	result = 0;
-	if (tree)
-	{
-		if (tree->par)
-		{
-			tree = tree->par;
-			if (tree->next || tree->pre || tree->par)
-				result = 1;
-		}
-	}
-
-	return (result);
-}
 
 t_tree	*tree_create(char *name)
 {
@@ -38,7 +20,6 @@ t_tree	*tree_create(char *name)
 	if ((new = (t_tree*)malloc(sizeof(t_tree))))
 	{
 		new->name = ft_strdup(name);
-		//new->data = NULL;
 		new->data = (t_data *)malloc(sizeof(t_data));
 		new->par = NULL;
 		new->chi = NULL;
@@ -104,4 +85,3 @@ void	tree_destroy(t_tree *tree)
 		free(tree);
 	}
 }
-

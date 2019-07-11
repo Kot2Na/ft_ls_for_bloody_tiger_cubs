@@ -6,12 +6,11 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 22:12:35 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/11 20:34:10 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
 
 t_bit *create_flag(int ac, char **av)
 {
@@ -41,18 +40,18 @@ int main()
 
     av[1] = "/Users/bomanyte/ft_ls_for_bloody_tiger_cubs";
     av[2] = NULL;
-	//flag = create_flag(ac, av);
+	flag = create_flag(ac, av);
 	flag = (t_bit*)malloc(sizeof(t_bit));
 	set_zero(flag);
-	flag->R = 1;
+	flag->re = 1;
 	flag->l = 1;
 	flag->a = 1;
 	tree = tree_born(flag, ac, av);
 
 	tree = tree_to_start(tree);
-	flag->a ? get_totalR(tree) : get_total(tree);
-	//printf("total %lld\n", tree->data->blocks);
-    sort_t(tree);
+    //sort_t(tree);
+	flag->a ? get_totalr(tree) : get_total(tree);
+	tree_sort(tree, size_sort);
 	tree_print(tree, NULL, flag);
 	tree_destroy(tree);
 	free(flag);

@@ -6,37 +6,30 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/08 19:29:12 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 16:45:36 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
 
-void fill_error(t_tree *tree)
+void	print_chi(t_tree *tree, char *name, t_bit *bit)
 {
-	t_data *data;
+	char	*path;
 
-	data = (t_data*)malloc(sizeof(t_data));
-	data->error = errno;
-	errno = 0;
-	tree->data = data;
-}
-
-t_tree	*tree_to_start(t_tree *tree)
-{
-	if (tree)
+	if (tree && bit)
 	{
-		while(tree->par)
-			tree = tree->par;
-		while(tree->pre)
-			tree = tree->pre;
+		path = make_path(name, tree->name);
+		if (bit->a)
+			tree_print(tree->chi, path, bit);
+		else if (tree->name[0] != '.' || !tree->par)
+			tree_print(tree->chi, path, bit);
+		free(path);
 	}
-	return (tree);
 }
 
 char	*make_path(char *from, char *to)
 {
-	char *result;
+	char	*result;
 
 	result = NULL;
 	if (from)
@@ -57,23 +50,24 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 	t_dir	*file;
 	t_tree	*leaf;
 	char	*path;
-	
+
 	if ((fdir = opendir(name)))
 	{
-		while((file = readdir(fdir)))
+		while ((file = readdir(fdir)))
 		{
 			path = make_path(name, file->d_name);
 			leaf = tree_addend_chil(root, tree_create(file->d_name));
 			fill_data(leaf, path);
-			if (bit->R)
-				if (!(ft_strncmp(file->d_name, "..", PATH_MAX) == 0 || (ft_strncmp(file->d_name, ".", PATH_MAX) == 0)))
+			if (bit->re)
+				if (!(ft_strncmp(file->d_name, "..", PATH_MAX) == 0
+							|| (ft_strncmp(file->d_name, ".", PATH_MAX) == 0)))
 					leaf = tree_open(bit, leaf, path);
 			free(path);
 		}
 		closedir(fdir);
 	}
 	else if (errno != 20)
-		fill_error(root);
+		root->data->error = errno;
 	errno = 0;
 	return (root);
 }
@@ -81,7 +75,7 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 t_tree	*tree_born(t_bit *bit, int ac, char **av)
 {
 	t_tree	*tree;
-	int			i;
+	int		i;
 
 	i = 1;
 	tree = NULL;
