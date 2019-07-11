@@ -47,7 +47,8 @@ typedef struct			s_data
 	char				*user;
 	char				*group;
 	long long			size;
-	char				*time;
+    long int              time_hash;
+    char                *time;
 }						t_data;
 
 typedef struct			s_tree
@@ -60,6 +61,8 @@ typedef struct			s_tree
 	struct s_tree		*pre;
 }						t_tree;
 
+void                    sort_t(t_tree *root);
+char	                *time_to_str(char *buf);
 char					*make_path(char *from, char *to);
 t_tree					*tree_create(char *name);
 t_tree					*tree_addend(t_tree *start, t_tree *new);

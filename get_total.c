@@ -15,7 +15,7 @@
 
 long long	get_total(t_tree *root)
 {
-	if (root->name[0] != '.' && !(ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0))) {
+	if (!root->par || (root->name[0] != '.' && !(ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX))))) {
 		if (root->par)
 			root->par->data->blocks += root->data->blocks;
 		if (root->chi) {

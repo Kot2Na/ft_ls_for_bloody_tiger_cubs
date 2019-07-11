@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libls.h"
-
+#include <stdio.h>
 int		tree_error(t_tree *tree)
 {
 	int error;
@@ -52,7 +52,7 @@ void	tree_error_13(t_tree *tree, char *name)
 
 void	print_par_l(t_data *data)
 {
-	ft_putstr(data->rights);
+    ft_putstr(data->rights);
 	ft_putchar(' ');
 	ft_putnbr((int) data->hd_link);
 	ft_putchar(' ');
@@ -62,7 +62,7 @@ void	print_par_l(t_data *data)
 	ft_putchar(' ');
 	ft_putnbr((int) data->size);
 	ft_putchar(' ');
-	ft_putstr(data->time);
+	ft_putstr(time_to_str(data->time));
 	ft_putchar(' ');
 }
 
