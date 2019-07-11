@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 21:47:22 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 16:45:21 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int						size_sort(t_tree *first, t_tree *second);
 void					tree_print(t_tree *tree, char *name, t_bit *bit);
 void					tree_destroy(t_tree *tree);
 void					set_flags(char **argv, t_bit *flags);
+void					print_chi(t_tree *tree, char *name, t_bit *bit);
 void					print_str_l(t_tree *tree);
 void					set_zero(t_bit *flags);
 void					print_path(char *path);
@@ -84,8 +85,8 @@ void					fill_data(t_tree *node, char *name);
 void					tree_swap(t_tree *tree1, t_tree *tree2);
 void					tree_sort(t_tree *tr, int (*s)(t_tree *, t_tree *));
 void					sort_my_child(t_tree *tr, int (*s)(t_tree *, t_tree *));
-void					bit_a_l(t_tree *tree, t_bit *bit);
-void					bit_a(t_tree *tree, t_bit *bit);
+int						bit_a_l(t_tree *tree, t_bit *bit);
+int						bit_a(t_tree *tree, t_bit *bit);
 void					print_total(t_tree *tree);
 long long				get_total(t_tree *root);
 long long				get_totalr(t_tree *root);

@@ -6,20 +6,25 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/10 21:33:36 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 16:45:36 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
 
-void	fill_error(t_tree *tree)
+void	print_chi(t_tree *tree, char *name, t_bit *bit)
 {
-	t_data	*data;
+	char	*path;
 
-	data = (t_data*)malloc(sizeof(t_data));
-	data->error = errno;
-	errno = 0;
-	tree->data = data;
+	if (tree && bit)
+	{
+		path = make_path(name, tree->name);
+		if (bit->a)
+			tree_print(tree->chi, path, bit);
+		else if (tree->name[0] != '.' || !tree->par)
+			tree_print(tree->chi, path, bit);
+		free(path);
+	}
 }
 
 char	*make_path(char *from, char *to)
@@ -62,7 +67,7 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 		closedir(fdir);
 	}
 	else if (errno != 20)
-		fill_error(root);
+		root->data->error = errno;
 	errno = 0;
 	return (root);
 }
