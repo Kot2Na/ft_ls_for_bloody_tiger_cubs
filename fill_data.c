@@ -113,8 +113,9 @@ void    sort_t(t_tree *root)
 {
     t_tree *p;
 
-
-    if (root && !root->par)
+    if (!root)
+        return ;
+    if (!root->par)
         return(sort_t(root->chi));
     while (root && (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0)))
         root = root->next;
@@ -122,6 +123,12 @@ void    sort_t(t_tree *root)
     if (!p)
         return ;
     sort_tree(p);
+    p = p->par->chi->next->next;
+    while (p) {
+        if (p->chi)
+            sort_t(p->chi);
+        p = p->next;
+    }
 }
 
 static void		file_set_zero(t_tree *node, int err)
