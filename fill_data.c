@@ -6,12 +6,11 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/11 21:11:37 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:35:30 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
 
 char	*time_to_str(char *buf)
 {
@@ -131,7 +130,7 @@ void    sort_t(t_tree *root)
     }
 }
 
-static void		file_set_zero(t_tree *node, int err)
+void		file_set_zero(t_tree *node, int err)
 {
 	node->data->user = NULL;
 	node->data->group = NULL;
