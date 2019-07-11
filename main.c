@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 21:49:39 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:56:32 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,7 @@ int main(int ac, char **av)
 	t_tree	*tree_er;
 	int test;
 
-	//flag = create_flag(ac, av);
-	flag = (t_bit*)malloc(sizeof(t_bit));
-	set_zero(flag);
-	flag->re = 1;
-	flag->l = 1;
-	flag->a = 0;
+	flag = create_flag(ac, av);
 	tree_er = tree_invalid(ac, av);
 	tree = tree_born(flag, ac, av);
 	if (tree)
