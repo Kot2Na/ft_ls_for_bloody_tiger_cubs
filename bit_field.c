@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/10 21:24:26 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 20:38:39 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,20 @@ int		validate_flags(char **argv)
 {
 	int i;
 	int j;
-	int flag;
 
 	i = 1;
 	j = 0;
 	while (argv[i])
 	{
-		flag = 0;
 		while (argv[i][j])
 		{
-			if (!flag && argv[i][j] && argv[i][j] != '-')
-			{
-                ft_putstr("ls: ");
-                ft_putstr(argv[i]);
-                ft_putstr(": No such file or directory\n");
-                return (0);
-			}
-			else if (flag && !is_legal(argv[i][j]))
+			if (!is_legal(argv[i][j]))
 			{
                 ft_putstr("ls: illegal option -- ");
                 ft_putchar(argv[i][j]);
                 ft_putchar('\n');
                 return (0);
 			}
-			flag = 1;
 			j++;
 		}
 		i++;
@@ -76,6 +66,8 @@ void	set_flags(char **argv, t_bit *flags)
                 flags->r = 1;
 			else if (argv[i][j] == 't')
                 flags->t = 1;
+			else if (argv[i][j] == 'S')
+                flags->s = 1;
             j++;
         }
         i++;
@@ -89,4 +81,5 @@ void	set_zero(t_bit *flags)
     flags->l = 0;
     flags->r = 0;
     flags->t = 0;
+	flags->s = 0;
 }

@@ -6,14 +6,14 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 21:00:13 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:34:59 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBLS_H
 # define LIBLS_H
 
-# include "libft.h"
+# include "libft/includes/libft.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <dirent.h>
@@ -34,6 +34,7 @@ typedef struct			s_bit
 	unsigned int		l:1;
 	unsigned int		t:1;
 	unsigned int		r:1;
+	unsigned int		s:1;
 }						t_bit;
 
 typedef struct			s_data
@@ -47,7 +48,8 @@ typedef struct			s_data
 	char				*user;
 	char				*group;
 	long long			size;
-	char				*time;
+    long int              time_hash;
+    char                *time;
 }						t_data;
 
 typedef struct			s_tree
@@ -60,6 +62,8 @@ typedef struct			s_tree
 	struct s_tree		*pre;
 }						t_tree;
 
+void                    sort_t(t_tree *root);
+char	                *time_to_str(char *buf);
 t_tree					*tree_create(char *name);
 t_tree					*tree_addend(t_tree *start, t_tree *new);
 t_tree					*tree_addend_chil(t_tree *root, t_tree *leaf);
