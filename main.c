@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 20:34:10 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:26:57 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,15 @@ t_bit *create_flag(int ac, char **av)
 	return (bit);
 }
 
-int main()
+int main(int ac, char **av)
 {
 	t_bit	*flag;
 	t_tree	*tree;
-    int ac = 2;
-    char *av[3];
-
-    av[1] = "/Users/bomanyte/ft_ls_for_bloody_tiger_cubs";
-    av[2] = NULL;
+	
 	flag = create_flag(ac, av);
-	flag = (t_bit*)malloc(sizeof(t_bit));
-	set_zero(flag);
-	flag->re = 1;
-	flag->l = 1;
-	flag->a = 1;
 	tree = tree_born(flag, ac, av);
-
 	tree = tree_to_start(tree);
-    //sort_t(tree);
-	flag->a ? get_totalr(tree) : get_total(tree);
-	tree_sort(tree, size_sort);
+	tree_controller(tree, flag);
 	tree_print(tree, NULL, flag);
 	tree_destroy(tree);
 	free(flag);

@@ -6,12 +6,12 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 20:46:42 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:05:44 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
+
 int		tree_error(t_tree *tree)
 {
 	int error;
@@ -47,22 +47,6 @@ void	tree_error_13(t_tree *tree, char *name)
 		ft_putchar('\n');
 		free(path);
 	}
-}
-
-void	print_par_l(t_data *data)
-{
-    ft_putstr(data->rights);
-	ft_putchar(' ');
-	ft_putnbr((int) data->hd_link);
-	ft_putchar(' ');
-	ft_putstr(data->user);
-	ft_putchar(' ');
-	ft_putstr(data->group);
-	ft_putchar(' ');
-	ft_putnbr((int) data->size);
-	ft_putchar(' ');
-	ft_putstr(time_to_str(data->time));
-	ft_putchar(' ');
 }
 
 int		for_l(t_tree *tree, char *name, t_bit *bit)
