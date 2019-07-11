@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 21:56:32 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 22:12:49 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int main(int ac, char **av)
 	{
 		tree = tree_to_start(tree);
 		flag->a ? get_totalr(tree) : get_total(tree);
-		tree_sort(tree, size_sort);
+		tree_sort(tree, ascii_sort);
 	}
 	if (tree_er)
 	{
