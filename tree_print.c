@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 18:19:33 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 18:37:25 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		for_l(t_tree *tree, char *name, t_bit *bit)
 			continue ;
 		}
 		path = make_path(name, tree->name);
-		if (one_or_not(tree) && !tree->pre)
+		if (one_or_not(tree, bit) && !tree->pre)
 			print_path(name);
 		if (tree->par && !tree->pre)
 			print_total(tree);
@@ -52,7 +52,7 @@ int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 			continue ;
 		}
 		path = make_path(name, tree->name);
-		if (one_or_not(tree) && !tree->pre)
+		if (one_or_not(tree, bit) && !tree->pre)
 			print_path(name);
 		if (bit_a(tree, bit))
 			i++;

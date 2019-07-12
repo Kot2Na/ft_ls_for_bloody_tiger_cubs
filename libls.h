@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 17:13:48 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 18:36:36 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct			s_bit
 	unsigned int		t:1;
 	unsigned int		r:1;
 	unsigned int		s:1;
+	unsigned int		er:1;
 }						t_bit;
 
 typedef struct			s_data
@@ -69,7 +70,7 @@ t_tree					*tree_to_start(t_tree *tree);
 t_tree					*tree_open(t_bit *bit, t_tree *root, char *name);
 t_tree					*tree_born(t_bit *bit, int ac, char **av);
 t_tree					*to_start(t_tree *tree);
-t_tree					*tree_invalid(int ac, char **av);
+t_tree					*tree_invalid(int ac, char **av, t_bit *bit);
 t_bit					*create_flag(int ac, char **av);
 char					*make_path(char *from, char *to);
 char					*time_to_str(char *buf);
@@ -94,7 +95,7 @@ int						bit_a_l(t_tree *tree, t_bit *bit);
 int						tree_error(t_tree *tree);
 int						bit_a(t_tree *tree, t_bit *bit);
 int						is_legal(char c);
-int						one_or_not(t_tree *tree);
+int						one_or_not(t_tree *tree, t_bit *bit);
 int						validate_flags(char **argv);
 int						ascii_sort(t_tree *first, t_tree *second);
 int						dir_valid(char *name);

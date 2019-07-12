@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 16:05:35 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 18:37:01 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int ac, char **av)
 	int test;
 
 	flag = create_flag(ac, av);
-	tree_er = tree_invalid(ac, av);
+	tree_er = tree_invalid(ac, av, flag);
 	tree = tree_born(flag, ac, av);
 	if (tree)
 	{

@@ -6,19 +6,21 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 21:32:03 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 16:46:25 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 18:36:02 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
 
-int		one_or_not(t_tree *tree)
+int		one_or_not(t_tree *tree, t_bit *bit)
 {
 	int result;
 
 	result = 0;
-	if (tree)
+	if (tree && bit)
 	{
+		if (bit->er)
+			result = 1;
 		if (tree->par)
 		{
 			tree = tree->par;
