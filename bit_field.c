@@ -6,11 +6,30 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/11 23:00:03 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 16:05:42 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
+
+t_bit *create_flag(int ac, char **av)
+{
+	t_bit	*bit;
+
+	bit = NULL;
+	if ((bit = (t_bit *)malloc(sizeof(t_bit))))
+	{
+		if (ac > 1 && !(validate_flags(av)))
+		{
+			free(bit);
+			ft_putstr("usage: ls [-Ralrt] [file ...]\n");
+			exit(0);
+		}
+		set_zero(bit);
+		set_flags(av, bit);
+	}
+ 	return (bit);
+}
 
 int		is_legal(char c)
 {
