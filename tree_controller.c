@@ -18,7 +18,10 @@ void	tree_controller(t_tree *root, t_bit *flags)
 	if (flags->l)
 		tree_sort(root, ascii_sort);
 	if (flags->t)
-		 sort_t(root);
+	{
+        sort_t(root);
+        sort_t_ascii(root, ascii_sort);
+    }
 	 if (flags->s)
 		 tree_sort(root, size_sort);
 }

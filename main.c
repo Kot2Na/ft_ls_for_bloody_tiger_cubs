@@ -6,13 +6,13 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 19:26:22 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:46:47 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
 
-t_bit *create_flag(int ac, char **av)
+/*t_bit *create_flag(int ac, char **av)
 {
 	t_bit	*bit;
 
@@ -30,8 +30,8 @@ t_bit *create_flag(int ac, char **av)
 	}
  	return (bit);
 }
-
-t_tree	*tree_invalid(int ac, char **av)
+*/
+/*t_tree	*tree_invalid(int ac, char **av)
 {
 	t_tree* tree;
 	int i;
@@ -51,7 +51,7 @@ t_tree	*tree_invalid(int ac, char **av)
 		i++;
 	}
 	return (tree);
-}
+} */
 
 int main(int ac, char **av)
 {
@@ -62,13 +62,18 @@ int main(int ac, char **av)
 	flag = create_flag(ac, av);
 	tree_er = tree_invalid(ac, av, flag);
 	tree = tree_born(flag, ac, av);
+	if (tree)
+    {
+        tree = tree_to_start(tree);
+        tree_controller(tree, flag);
+    }
 	if (tree_er)
 	{
 		tree_er = tree_to_start(tree_er);
 		tree_sort(tree_er, ascii_sort);
 		tree_er = tree_to_start(tree_er);
 	}
-	tree_controller(tree, flag);
+	//tree_controller(tree, flag);
 	tree_print(tree_er, NULL, flag);
 	tree_print(tree, NULL, flag);
 	tree_destroy(tree);

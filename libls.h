@@ -6,14 +6,14 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 19:29:40 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:43:47 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBLS_H
 # define LIBLS_H
 
-# include "libft.h"
+# include "libft/includes/libft.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <dirent.h>

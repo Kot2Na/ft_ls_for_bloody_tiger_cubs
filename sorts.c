@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 20:47:14 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 18:08:48 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 21:56:17 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,14 @@ void    sort_t_ascii(t_tree *root, int (*s)(t_tree *, t_tree *))
         return ;
     if (!root->par)
         return(sort_t_ascii(root->chi, s));
-    while (root && (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0)))
-        root = root->next;
+    //while (root && (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0)))
+    //    root = root->next;
     p = root;
     if (!p)
         return ;
     time_ascii(p, s);
-    p = p->par->chi->next->next;
+    p = p->par->chi;
+    //p = p->par->chi->next->next;
     while (p) {
         if (p->chi)
             time_ascii(p->chi, s);

@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/12 19:30:25 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/12 21:57:58 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,12 +154,15 @@ static int is_sorted(t_tree *root)
 {
     t_tree *p;
 
-    if (!root || !root->pre)
+   // fixed
+//    if (!root || !root->pre)
+//        return (1);
+    if (!root)
         return (1);
     while (root->pre != NULL)
         root = root->pre;
-    while (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0))
-        root = root->next;
+    //while (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0))
+     //   root = root->next;
     p = root->next;
     while (root)
     {
@@ -178,7 +181,11 @@ static int is_sorted(t_tree *root)
 
 void sort_next(t_tree *root, t_tree *p)
 {
-	root->pre->next = p;
+	if (root->pre)
+	    root->pre->next = p;
+	//fixed
+	else
+	    root->par->chi = p;
 	if (p->next)
 		p->next->pre = root;
 	root->next = p->next;
@@ -198,7 +205,11 @@ void	sort_not_next(t_tree *root, t_tree *p)
 	root->next = p->next;
 	p->next = tmp;
 	p->next->pre = p;
-	p->pre->next = p;
+	if (p->pre)
+	    p->pre->next = p;
+	//fixed
+	else
+	    p->par->chi = p;
 	if (root->next)
 		root->next->pre = root;
 	root->pre->next = root;
@@ -236,13 +247,14 @@ void    sort_t(t_tree *root)
         return ;
     if (!root->par)
         return(sort_t(root->chi));
-    while (root && (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0)))
-        root = root->next;
+    //while (root && (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0)))
+    //    root = root->next;
     p = root;
     if (!p)
         return ;
     sort_tree(p);
-    p = p->par->chi->next->next;
+    p = p->par->chi;
+    //p = p->par->chi->next->next;
     while (p) {
         if (p->chi)
             sort_t(p->chi);
