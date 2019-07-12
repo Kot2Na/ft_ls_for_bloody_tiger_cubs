@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 19:56:33 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 20:06:03 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int main(int ac, char **av)
 	if (tree)
 	{
 		tree = tree_to_start(tree);
-		flag->a ? get_totalr(tree) : get_total(tree);
 		tree_controller(tree, flag);
 	}
 	if (tree_er)
