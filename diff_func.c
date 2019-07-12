@@ -59,12 +59,12 @@ int		bit_a_l(t_tree *tree, t_bit *bit)
 		{
 			if (bit->a)
 			{
-				print_str_l(tree);
+				print_str_l(tree, bit);
 				return (1);
 			}
 			else if (tree->name[0] != '.')
 			{
-				print_str_l(tree);
+				print_str_l(tree, bit);
 				return (1);
 			}
 		}

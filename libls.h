@@ -48,7 +48,7 @@ typedef struct			s_data
 	char				*user;
 	char				*group;
 	long long			size;
-    long int              time_hash;
+    long int            time_hash;
     char                *time;
 }						t_data;
 
@@ -62,6 +62,9 @@ typedef struct			s_tree
 	struct s_tree		*pre;
 }						t_tree;
 
+void                    sort_not_next(t_tree *root, t_tree *p);
+void                    sort_next(t_tree *root, t_tree *p);
+void                    sort_t_ascii(t_tree *root, int (*s)(t_tree *, t_tree *));
 void					tree_controller(t_tree *root, t_bit *flag);
 void                    sort_t(t_tree *root);
 char	                *time_to_str(char *buf);
@@ -83,7 +86,7 @@ void					tree_print(t_tree *tree, char *name, t_bit *bit);
 void					tree_destroy(t_tree *tree);
 void					set_flags(char **argv, t_bit *flags);
 void					print_chi(t_tree *tree, char *name, t_bit *bit);
-void					print_str_l(t_tree *tree);
+void					print_str_l(t_tree *tree, t_bit *bit);
 void					set_zero(t_bit *flags);
 void					print_path(char *path);
 void					print_name(char *name);

@@ -6,13 +6,14 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/11 22:15:44 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/11 22:49:27 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
 #include <stdio.h>
 
+/*
 char	*time_to_str(char *buf)
 {
     char copy[13];
@@ -130,7 +131,7 @@ void    sort_t(t_tree *root)
         p = p->next;
     }
 }
-
+*/
 char	*time_to_str(char *buf)
 {
     char copy[13];
@@ -175,7 +176,7 @@ static int is_sorted(t_tree *root)
     return (1);
 }
 
-static void sort_next(t_tree *root, t_tree *p)
+void sort_next(t_tree *root, t_tree *p)
 {
 	root->pre->next = p;
 	if (p->next)
@@ -186,7 +187,7 @@ static void sort_next(t_tree *root, t_tree *p)
 	root->pre = p;
 }
 
-static void	sort_not_next(t_tree *root, t_tree *p)
+void	sort_not_next(t_tree *root, t_tree *p)
 {
 	t_tree *tmp;
 
