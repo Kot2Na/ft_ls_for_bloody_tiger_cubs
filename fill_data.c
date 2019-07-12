@@ -6,12 +6,11 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/11 22:49:27 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:30:25 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
 
 /*
 char	*time_to_str(char *buf)
@@ -132,6 +131,7 @@ void    sort_t(t_tree *root)
     }
 }
 */
+
 char	*time_to_str(char *buf)
 {
     char copy[13];

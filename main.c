@@ -6,12 +6,12 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 22:51:26 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:26:22 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
+
 t_bit *create_flag(int ac, char **av)
 {
 	t_bit	*bit;
@@ -60,14 +60,8 @@ int main(int ac, char **av)
 	t_tree	*tree_er;
 
 	flag = create_flag(ac, av);
-	tree_er = tree_invalid(ac, av);
+	tree_er = tree_invalid(ac, av, flag);
 	tree = tree_born(flag, ac, av);
-/*	if (tree)
-	{
-		tree = tree_to_start(tree);
-		flag->a ? get_totalr(tree) : get_total(tree);
-		tree_sort(tree, size_sort);
-	} */
 	if (tree_er)
 	{
 		tree_er = tree_to_start(tree_er);

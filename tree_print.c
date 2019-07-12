@@ -6,55 +6,18 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 21:52:47 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 18:37:25 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-
-int		tree_error(t_tree *tree)
-{
-	int error;
-
-	error = 0;
-	if (tree->data)
-	{
-		if (tree->data->error != 13 && tree->data->error != 0)
-		{
-			ft_putstr("ft_ls: ");
-			ft_putstr(tree->name);
-			ft_putstr(": ");
-			ft_putstr(strerror(tree->data->error));
-			ft_putchar('\n');
-			error = 1;
-		}
-	}
-	return (error);
-}
-
-void	tree_error_13(t_tree *tree, char *name)
-{
-	char *path;
-
-	if (tree)
-	{
-		path = make_path(name, tree->name);
-		print_path(path);
-		ft_putstr("ft_ls: ");
-		ft_putstr(tree->name);
-		ft_putstr(": ");
-		ft_putstr(strerror(tree->data->error));
-		ft_putchar('\n');
-		free(path);
-	}
-}
 
 int		for_l(t_tree *tree, char *name, t_bit *bit)
 {
 	char	*path;
 	int		i;
 
-	i = 1;
+	i = 0;
 	while (tree)
 	{
 		if (tree_error(tree))
@@ -63,7 +26,7 @@ int		for_l(t_tree *tree, char *name, t_bit *bit)
 			continue ;
 		}
 		path = make_path(name, tree->name);
-		if (one_or_not(tree) && !tree->pre)
+		if (one_or_not(tree, bit) && !tree->pre)
 			print_path(name);
 		if (tree->par && !tree->pre)
 			print_total(tree);
@@ -80,7 +43,7 @@ int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 	char	*path;
 	int		i;
 
-	i = 1;
+	i = 0;
 	while (tree)
 	{
 		if (tree_error(tree))
@@ -89,13 +52,11 @@ int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 			continue ;
 		}
 		path = make_path(name, tree->name);
-		if (one_or_not(tree) && !tree->pre)
+		if (one_or_not(tree, bit) && !tree->pre)
 			print_path(name);
 		if (bit_a(tree, bit))
 			i++;
-		if (i % 6 == 0)
-			ft_putchar('\n');
-		if (!tree->next && tree->par)
+		if ((i + 1) % 6 == 0 || (!tree->next && tree->par))
 			ft_putchar('\n');
 		tree = tree->next;
 		free(path);
@@ -113,14 +74,20 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 		while (tree)
 		{
 			if (tree->data && tree->data->error == 13)
-				tree_error_13(tree, name);
-			if (i > 1)
 			{
-				ft_putchar('\n');
-				i = 0;
+				if (i > 0)
+					ft_putchar('\n');
+				i += tree_error_13(tree, name);
 			}
 			if (tree->chi)
+			{
+				if (i > 0)
+				{
+					ft_putchar('\n');
+					i = 0;
+				}
 				print_chi(tree, name, bit);
+			}
 			tree = tree->next;
 		}
 	}

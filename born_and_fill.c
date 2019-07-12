@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/11 21:49:16 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 16:04:06 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,6 @@ t_tree	*tree_open(t_bit *bit, t_tree *root, char *name)
 		root->data->error = errno;
 	errno = 0;
 	return (root);
-}
-
-int		dir_valid(char *name)
-{
-	DIR *fdir;
-
-	if ((fdir = opendir(name)))
-	{
-		closedir(fdir);
-		return (1);
-	}
-	return (0);
 }
 
 t_tree	*tree_born(t_bit *bit, int ac, char **av)
