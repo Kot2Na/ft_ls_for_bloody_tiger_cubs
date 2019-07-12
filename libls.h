@@ -6,14 +6,14 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 16:20:27 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 17:13:48 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBLS_H
 # define LIBLS_H
 
-# include "libft/includes/libft.h"
+# include "libft.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <dirent.h>
@@ -88,8 +88,8 @@ void					fill_data(t_tree *node, char *name);
 void					tree_swap(t_tree *tree1, t_tree *tree2);
 void					tree_sort(t_tree *tr, int (*s)(t_tree *, t_tree *));
 void					sort_my_child(t_tree *tr, int (*s)(t_tree *, t_tree *));
-void					tree_error_13(t_tree *tree, char *name);
 void					file_set_zero(t_tree *node, int err);
+int						tree_error_13(t_tree *tree, char *name);
 int						bit_a_l(t_tree *tree, t_bit *bit);
 int						tree_error(t_tree *tree);
 int						bit_a(t_tree *tree, t_bit *bit);

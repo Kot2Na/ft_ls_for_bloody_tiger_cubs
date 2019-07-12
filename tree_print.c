@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 16:04:54 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 17:20:32 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		for_l(t_tree *tree, char *name, t_bit *bit)
 	char	*path;
 	int		i;
 
-	i = 1;
+	i = 0;
 	while (tree)
 	{
 		if (tree_error(tree))
@@ -43,7 +43,7 @@ int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 	char	*path;
 	int		i;
 
-	i = 1;
+	i = 0;
 	while (tree)
 	{
 		if (tree_error(tree))
@@ -76,8 +76,8 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 		while (tree)
 		{
 			if (tree->data && tree->data->error == 13)
-				tree_error_13(tree, name);
-			if (i > 1)
+				i += tree_error_13(tree, name);
+			if (i > 0)
 			{
 				ft_putchar('\n');
 				i = 0;
