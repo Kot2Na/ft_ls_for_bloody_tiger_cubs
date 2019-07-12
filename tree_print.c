@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 18:37:25 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:25:05 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 			print_path(name);
 		if (bit_a(tree, bit))
 			i++;
-		if ((i + 1) % 6 == 0 || (!tree->next && tree->par))
+		if (!tree->next && tree->par)
 			ft_putchar('\n');
 		tree = tree->next;
 		free(path);
