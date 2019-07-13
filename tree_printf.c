@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:07:43 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 19:24:22 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/13 21:01:36 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	print_par_l(t_data *data, long long n, unsigned short n1)
     }
     else
         ft_putchar(' ');
-    ft_putnbr((int)data->hd_link);
+    ft_putlongnbr(data->hd_link);
     ft_putchar(' ');
 	ft_putstr(data->user);
 	ft_putchar(' ');
@@ -102,7 +102,7 @@ static void	print_par_l(t_data *data, long long n, unsigned short n1)
     }
 	else
         ft_putchar(' ');
-    ft_putnbr((int)data->size);
+    ft_putlongnbr(data->size);
     ft_putchar(' ');
 	//ft_putchar('\t');
 	ft_putstr(data->time);

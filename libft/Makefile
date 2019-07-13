@@ -6,13 +6,13 @@
 #    By: crycherd <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 20:26:26 by crycherd          #+#    #+#              #
-#    Updated: 2019/06/12 19:47:10 by crycherd         ###   ########.fr        #
+#    Updated: 2019/07/13 20:59:02 by crycherd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 FLAGS = -Wall -Wextra -Werror -Iincludes
-SOURCE = get_next_line swap lstprint count_wrd lstremovis lstaddend lstmap lstiter lstadd lstdel lstdelone lstnew putnbr_fd putendl_fd putstr_fd putchar_fd putendl itoa strsplit strtrim strjoin strsub strnequ strequ strmapi strmap striteri striter strclr strdel strnew memdel memalloc putnbr putstr putchar memcmp memchr memccpy memcpy memmove bzero memset tolower toupper isprint isascii isalnum isdigit isalpha strncmp strnstr strlcat strncat strcat strncpy  strlen strdup strcpy strcmp strstr atoi strchr strrchr
+SOURCE = putlongnbr get_next_line swap lstprint count_wrd lstremovis lstaddend lstmap lstiter lstadd lstdel lstdelone lstnew putnbr_fd putendl_fd putstr_fd putchar_fd putendl itoa strsplit strtrim strjoin strsub strnequ strequ strmapi strmap striteri striter strclr strdel strnew memdel memalloc putnbr putstr putchar memcmp memchr memccpy memcpy memmove bzero memset tolower toupper isprint isascii isalnum isdigit isalpha strncmp strnstr strlcat strncat strcat strncpy  strlen strdup strcpy strcmp strstr atoi strchr strrchr
 
 all: $(NAME)
 

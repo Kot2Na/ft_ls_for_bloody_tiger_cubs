@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 20:48:11 by crycherd          #+#    #+#             */
-/*   Updated: 2019/06/13 15:37:59 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/13 20:58:42 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					ft_strequ(char const *s1, char const *s2);
 void				ft_putendl_fd(char const *s, int fd);
+void				ft_putlongnbr(long long nb);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 void				ft_putnbr_fd(int nb, int fd);
