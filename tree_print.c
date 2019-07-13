@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/13 21:46:08 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/13 23:25:12 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ t_tree	*print_me_please(t_tree *tree, t_bit *bit, int nbr, int max)
 				ft_putstr(print->name);
 			else
 				nbr++;
-			if ((i + 1) % col == 0)
+			if ((i + 1) % col == 0 || i + 1 == nbr)
 				ft_putchar('\n');
 			else
 				fill_space(print->name, max);
@@ -175,18 +175,6 @@ t_tree	*prepar_for_print(t_tree *tree, t_bit *bit)
 	return (tree);
 }
 
-void tree_print_v(t_tree *tree)
-{
-	if (tree)
-	{
-		while (tree)
-		{
-			printf("%s\n", tree->name);
-			tree = tree->next;
-		}
-	}
-}
-
 int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 {
 	char	*path;
@@ -194,23 +182,19 @@ int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 	t_win	win;
 
 	i = 0;
-	while (tree)
-	{
-		if (tree_error(tree))
-		{
-			tree = tree->next;
-			continue ;
-		}		
-		path = make_path(name, tree->name);
-		if (one_or_not(tree, bit) && !tree->pre)
-			print_path(name);
-		tree = prepar_for_print(tree, bit);
-		if (!tree->next && tree->par)
-			i++;
+	while (tree_error(tree))
 		tree = tree->next;
-		free(path);
+	path = make_path(name, tree->name);
+	if (one_or_not(tree, bit) && !tree->pre)
+		print_path(name);
+	tree = prepar_for_print(tree, bit);
+	if (tree && tree->par)
+	{
+		ft_putchar('\n');
+		i++;
 	}
-	return (i);
+	free(path);
+	return (0);
 }
 
 t_tree	*tree_to_last(t_tree *tree)

@@ -6,16 +6,17 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 19:43:47 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:03:38 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBLS_H
 # define LIBLS_H
 
-# include "libft/includes/libft.h"
+# include "libft.h"
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <sys/ioctl.h>
 # include <dirent.h>
 # include <errno.h>
 # include <string.h>
@@ -26,6 +27,7 @@
 
 typedef struct dirent	t_dir;
 typedef struct stat		t_stat;
+typedef	struct winsize	t_win;
 
 typedef struct			s_bit
 {
