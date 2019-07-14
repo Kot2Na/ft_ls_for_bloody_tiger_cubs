@@ -6,11 +6,12 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/13 23:25:12 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/14 19:45:03 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
+#include <stdio.h>
 
 int		for_l(t_tree *tree, char *name, t_bit *bit)
 {
@@ -120,7 +121,7 @@ void	fill_space(char *name, int max)
 	}
 }
 
-t_tree	*print_me_please(t_tree *tree, t_bit *bit, int nbr, int max)
+int		print_me_please(t_tree *tree, t_bit *bit, int nbr, int max)
 {
 	t_tree	*print;
 	t_win	win;
@@ -155,13 +156,12 @@ t_tree	*print_me_please(t_tree *tree, t_bit *bit, int nbr, int max)
 			if ((i / col + (i % col) * row) <= nbr)
 				i++;
 		}
-		while (tree->next)
-			tree = tree->next;
+		return (1);
 	}
-	return (tree);
+	return (0);
 }
 
-t_tree	*prepar_for_print(t_tree *tree, t_bit *bit)
+int 	prepar_for_print(t_tree *tree, t_bit *bit)
 {
 	int		max;
 	int		nbr;
@@ -170,30 +170,8 @@ t_tree	*prepar_for_print(t_tree *tree, t_bit *bit)
 	{
 		nbr = count_tree(tree, bit);
 		max = count_name_tree(tree, bit);
-		tree = print_me_please(tree, bit, nbr, max);
+		return (print_me_please(tree, bit, nbr, max));
 	}
-	return (tree);
-}
-
-int		not_for_l(t_tree *tree, char *name, t_bit *bit)
-{
-	char	*path;
-	int		i;
-	t_win	win;
-
-	i = 0;
-	while (tree_error(tree))
-		tree = tree->next;
-	path = make_path(name, tree->name);
-	if (one_or_not(tree, bit) && !tree->pre)
-		print_path(name);
-	tree = prepar_for_print(tree, bit);
-	if (tree && tree->par)
-	{
-		ft_putchar('\n');
-		i++;
-	}
-	free(path);
 	return (0);
 }
 
@@ -224,6 +202,20 @@ int		sosna_or_ne(t_tree *tree)
 			return (1);
 	}
 	return (0);
+}
+
+int		not_for_l(t_tree *tree, char *name, t_bit *bit)
+{
+	char	*path;
+	t_win	win;
+
+	path = make_path(name, tree->name);
+	if (one_or_not(tree, bit) && !tree->pre)
+		print_path(name);
+	//if (tree && tree->par)
+		//ft_putchar('\n');
+	free(path);
+	return (prepar_for_print(tree, bit));
 }
 
 void	tree_print(t_tree *tree, char *name, t_bit *bit)
