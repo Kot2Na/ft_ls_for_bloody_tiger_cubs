@@ -6,13 +6,12 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/12 21:57:58 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/14 20:09:18 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
 
-/*
 char	*time_to_str(char *buf)
 {
     char copy[13];
@@ -35,134 +34,10 @@ static int is_sorted(t_tree *root)
 {
     t_tree *p;
 
-    if (!root || !root->pre)
-        return (1);
-    while (root->pre != NULL)
-        root = root->pre;
-    while (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0))
-        root = root->next;
-    p = root->next;
-    while (root)
-    {
-        while (p)
-        {
-            if (root->data->time_hash < p->data->time_hash)
-                return (0);
-            p = p->next;
-        }
-        root = root->next;
-        if (root)
-            p = root->next;
-    }
-    return (1);
-}
-
-static void sort_next(t_tree *root, t_tree *p)
-{
-	root->pre->next = p;
-	if (p->next)
-		p->next->pre = root;
-	root->next = p->next;
-	p->next = root;
-	p->pre = root->pre;
-	root->pre = p;
-}
-
-static void	sort_not_next(t_tree *root, t_tree *p)
-{
-	t_tree *tmp;
-
-	tmp = root->pre;
-	root->pre = p->pre;
-	p->pre = tmp;
-	tmp = root->next;
-	root->next = p->next;
-	p->next = tmp;
-	p->next->pre = p;
-	p->pre->next = p;
-	if (root->next)
-		root->next->pre = root;
-	root->pre->next = root;
-}
-
-static void sort_tree(t_tree *root)
-{
-        t_tree *p;
-
-		p = root->next;
-		while (p)
-		{
-			if (root->data->time_hash < p->data->time_hash)
-			{
-				if (root->next == p)
-					sort_next(root, p);
-				else
-					sort_not_next(root, p);
-				root = p;
-			}
-			p = p->next;
-		}
-		if (is_sorted(root))
-			return ;
-        if (!root->next)
-            return ;
-		return(sort_tree(root->next));
-}
-
-void    sort_t(t_tree *root)
-{
-    t_tree *p;
-
-    if (!root)
-        return ;
-    if (!root->par)
-        return(sort_t(root->chi));
-    while (root && (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0)))
-        root = root->next;
-    p = root;
-    if (!p)
-        return ;
-    sort_tree(p);
-    p = p->par->chi->next->next;
-    while (p) {
-        if (p->chi)
-            sort_t(p->chi);
-        p = p->next;
-    }
-}
-*/
-
-char	*time_to_str(char *buf)
-{
-    char copy[13];
-    int i;
-    int j;
-
-    copy[12] = '\0';
-    i = 0;
-    j = 4;
-    while (i != 12)
-    {
-        copy[i] = buf[j];
-        i++;
-        j++;
-    }
-    return(ft_strdup(copy));
-}
-
-static int is_sorted(t_tree *root)
-{
-    t_tree *p;
-
-   // fixed
-//    if (!root || !root->pre)
-//        return (1);
     if (!root)
         return (1);
     while (root->pre != NULL)
         root = root->pre;
-    //while (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0))
-     //   root = root->next;
     p = root->next;
     while (root)
     {
@@ -183,7 +58,6 @@ void sort_next(t_tree *root, t_tree *p)
 {
 	if (root->pre)
 	    root->pre->next = p;
-	//fixed
 	else
 	    root->par->chi = p;
 	if (p->next)
@@ -207,7 +81,6 @@ void	sort_not_next(t_tree *root, t_tree *p)
 	p->next->pre = p;
 	if (p->pre)
 	    p->pre->next = p;
-	//fixed
 	else
 	    p->par->chi = p;
 	if (root->next)
@@ -247,14 +120,11 @@ void    sort_t(t_tree *root)
         return ;
     if (!root->par)
         return(sort_t(root->chi));
-    //while (root && (ft_strncmp(root->name, "..", PATH_MAX) == 0 || (ft_strncmp(root->name, ".", PATH_MAX) == 0)))
-    //    root = root->next;
     p = root;
     if (!p)
         return ;
     sort_tree(p);
     p = p->par->chi;
-    //p = p->par->chi->next->next;
     while (p) {
         if (p->chi)
             sort_t(p->chi);
@@ -295,6 +165,7 @@ static int get_month(const char *buf)
     month[0] = buf[4];
     month[1] = buf[5];
     month[2] = buf[6];
+    month[3] = '\0';
     res = ft_strcmp(month, "Jan") ? 0 : 1;
     res = ft_strcmp(month, "Feb") ? res : 2;
     res = ft_strcmp(month, "Mar") ? res : 3;
@@ -362,15 +233,9 @@ static int		get_soft_ln(t_tree *node, t_stat *buff, char *path)
 	{
 		len = buff->st_size;
 		if (!(buf = (char *)malloc(len)))
-		{
-			//perror("malloc");
 			exit(-1);
-		}
 		if (readlink(path, buf, len) == -1)
-		{
-			//perror("readlink");
 			exit(-1);
-		}
 		buf[len] = '\0';
 		node->data->soft_ln = buf;
 		return (1);
@@ -401,7 +266,10 @@ static void    get_mode(t_tree *node, t_stat *buff, char *path)
 	buf = (char *)ft_memalloc(11);
 	if ((is_l = get_soft_ln(node, buff, path)) == -1)
 	{
-		//perror("get_soft_ln");
+		free(buf);
+		file_set_zero(node, (int) errno);
+		errno = 0;
+		return ;
 	}
 	get_rwx(buf, buff);
 	buf[0] = (buff->st_mode & S_IFDIR) ? 'd' : '-';

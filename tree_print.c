@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/14 19:45:03 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/14 22:50:30 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,14 @@ t_tree	*find_tree(t_tree *tree, int n, t_bit *bit)
 	if (tree)
 	{
 		i = 0;
-		if (!bit->a)
-			while (tree && tree->name[0] == '.')
-				tree = tree->next;
-		while (tree->next && i < n)
+		while (tree->next && i <= n)
 		{
 			if (bit->a)
 				i++;
 			else if (tree->name[0] != '.')
 				i++;
+			if (i > n)
+				break ;
 			tree = tree->next;
 		}
 	}
@@ -153,8 +152,7 @@ int		print_me_please(t_tree *tree, t_bit *bit, int nbr, int max)
 				ft_putchar('\n');
 			else
 				fill_space(print->name, max);
-			if ((i / col + (i % col) * row) <= nbr)
-				i++;
+			i++;
 		}
 		return (1);
 	}
@@ -174,7 +172,7 @@ int 	prepar_for_print(t_tree *tree, t_bit *bit)
 	}
 	return (0);
 }
-
+//eto vrode tozhe
 t_tree	*tree_to_last(t_tree *tree)
 {
 	if (tree)
@@ -188,7 +186,7 @@ t_tree	*tree_to_last(t_tree *tree)
 	}
 	return (tree);
 }
-
+//sosna ne prigodilas'
 int		sosna_or_ne(t_tree *tree)
 {
 	t_tree *sosna;
@@ -212,13 +210,11 @@ int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 	path = make_path(name, tree->name);
 	if (one_or_not(tree, bit) && !tree->pre)
 		print_path(name);
-	//if (tree && tree->par)
-		//ft_putchar('\n');
 	free(path);
 	return (prepar_for_print(tree, bit));
 }
 
-void	tree_print(t_tree *tree, char *name, t_bit *bit)
+int		tree_print(t_tree *tree, char *name, t_bit *bit)
 {
 	int		i;
 	t_tree *sosna;
@@ -231,8 +227,11 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 			if (tree->data && tree->data->error == 13)
 			{
 				if (i > 0)
+				{
 					ft_putchar('\n');
-				i += tree_error_13(tree, name);
+					i = 0;
+				}
+				i = tree_error_13(tree, name);
 			}
 			if (tree->chi)
 			{
@@ -241,16 +240,10 @@ void	tree_print(t_tree *tree, char *name, t_bit *bit)
 					ft_putchar('\n');
 					i = 0;
 				}
-				print_chi(tree, name, bit);
-			}
-			if (sosna_or_ne(tree))
-				i = 0;
-			else if (i && tree->next && !sosna_or_ne(tree))
-			{
-				ft_putchar('\n');
-				i = 0;
+				i = print_chi(tree, name, bit);
 			}
 			tree = tree->next;
 		}
 	}
+	return (i);
 }
