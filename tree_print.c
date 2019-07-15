@@ -6,12 +6,11 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/14 22:50:30 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/15 05:41:27 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-#include <stdio.h>
 
 int		for_l(t_tree *tree, char *name, t_bit *bit)
 {
@@ -21,6 +20,8 @@ int		for_l(t_tree *tree, char *name, t_bit *bit)
 	i = 0;
 	while (tree)
 	{
+		if (bit->lgbt)
+			print_lgbt(0);
 		if (tree_error(tree))
 		{
 			tree = tree->next;
@@ -39,6 +40,7 @@ int		for_l(t_tree *tree, char *name, t_bit *bit)
 		tree = tree->next;
 		free(path);
 	}
+	print_lgbt(-666);
 	return (i);
 }
 
@@ -143,6 +145,8 @@ int		print_me_please(t_tree *tree, t_bit *bit, int nbr, int max)
 			col++;
 		while (i < nbr)
 		{
+			if (bit->lgbt)
+				print_lgbt(0);
 			print = find_tree(tree, (i / col + (i % col) * row), bit);
 			if (print && (i / col + (i % col) * row) < nbr)
 				ft_putstr(print->name);
@@ -154,6 +158,7 @@ int		print_me_please(t_tree *tree, t_bit *bit, int nbr, int max)
 				fill_space(print->name, max);
 			i++;
 		}
+		print_lgbt(-666);
 		return (1);
 	}
 	return (0);
@@ -202,12 +207,38 @@ int		sosna_or_ne(t_tree *tree)
 	return (0);
 }
 
+void	print_lgbt(int f)
+{
+	static int i;
+
+	if (f == -666)
+	{
+		ft_putstr("\033[0m");
+		return ;
+	}
+	i = f ? 0 : ++i;
+	if (i % 6 == 0)
+		ft_putstr("\x1B[31m");
+	if (i % 6 == 1)
+		ft_putstr("\x1B[91m");
+	if (i % 6 == 2)
+		ft_putstr("\x1B[93m");
+	if (i % 6 == 3)
+		ft_putstr("\x1B[92m");
+	if (i % 6 == 4)
+		ft_putstr("\x1B[34m");
+	if (i % 6 == 5)
+		ft_putstr("\x1B[35m");
+}
+
 int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 {
 	char	*path;
 	t_win	win;
 
 	path = make_path(name, tree->name);
+	if (bit->lgbt)
+		print_lgbt(0);
 	if (one_or_not(tree, bit) && !tree->pre)
 		print_path(name);
 	free(path);
@@ -231,6 +262,8 @@ int		tree_print(t_tree *tree, char *name, t_bit *bit)
 					ft_putchar('\n');
 					i = 0;
 				}
+				if (bit->lgbt)
+					print_lgbt(0);
 				i = tree_error_13(tree, name);
 			}
 			if (tree->chi)

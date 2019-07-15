@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:07:43 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/13 21:01:36 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/15 07:53:32 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,21 @@ static unsigned short max_link(t_tree *root, t_bit *bit)
     i = 1;
 //    while (root->pre)
 //        root = root->pre;
-    if (bit->a)
+    //if (bit->a)
         root = root->par->chi;
-    else
-        root = root->par->chi->next->next;
+        //root = root->par->chi->next->next;
     while (root)
     {
-        if (root->data->hd_link > links)
+    	if (!bit->a)
+		{
+        	if (root->data->hd_link > links && root->name[0] != '.')
+            	links = root->data->hd_link;
+			//while (root && root->name[0] == '.')
+			//	root = root->next;
+			//if (!root)
+			//	return (0);
+		}
+		else if (root->data->hd_link > links)
             links = root->data->hd_link;
         root = root->next;
     }
@@ -61,10 +69,18 @@ static int max_size(t_tree *root, t_bit *bit)
     i = 1;
 //    while (root->pre)
 //        root = root->pre;
-    root = root->par->chi;
+//	if (bit->a)
+   		root = root->par->chi;
+//	else    
+//		root = root->par->chi->next->next;
     while (root)
     {
-        if (root->data->size > size)
+		if (!bit->a)
+		{	
+			if (root->data->size > size && root->name[0] != '.')
+            	size = root->data->size;
+		}
+		else if (root->data->size > size)
             size = root->data->size;
         root = root->next;
     }
@@ -104,7 +120,6 @@ static void	print_par_l(t_data *data, long long n, unsigned short n1)
         ft_putchar(' ');
     ft_putlongnbr(data->size);
     ft_putchar(' ');
-	//ft_putchar('\t');
 	ft_putstr(data->time);
 	ft_putchar(' ');
 }

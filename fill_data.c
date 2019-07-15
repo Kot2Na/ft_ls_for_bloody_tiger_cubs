@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 20:04:29 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/14 20:09:18 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/15 06:51:41 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ static void sort_tree(t_tree *root)
 			}
 			p = p->next;
 		}
-		if (is_sorted(root))
-			return ;
+	//	if (is_sorted(root))
+	//		return ;
         if (!root->next)
             return ;
 		return(sort_tree(root->next));
@@ -232,10 +232,13 @@ static int		get_soft_ln(t_tree *node, t_stat *buff, char *path)
 	if (S_ISLNK(buff->st_mode))
 	{
 		len = buff->st_size;
-		if (!(buf = (char *)malloc(len)))
+		if (!(buf = (char *)malloc(len + 1)))
 			exit(-1);
 		if (readlink(path, buf, len) == -1)
+		{
+			free(buf);
 			exit(-1);
+		}
 		buf[len] = '\0';
 		node->data->soft_ln = buf;
 		return (1);

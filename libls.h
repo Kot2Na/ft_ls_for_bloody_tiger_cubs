@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/14 22:48:55 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/15 05:18:25 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct			s_bit
 	unsigned int		r:1;
 	unsigned int		s:1;
 	unsigned int		er:1;
+	unsigned int		lgbt:1;
 }						t_bit;
 
 typedef struct			s_data
@@ -95,11 +96,12 @@ void					tree_swap(t_tree *tree1, t_tree *tree2);
 void					tree_sort(t_tree *tr, int (*s)(t_tree *, t_tree *));
 void					sort_my_child(t_tree *tr, int (*s)(t_tree *, t_tree *));
 void					file_set_zero(t_tree *node, int err);
+void					print_lgbt(int f);
 int						tree_error_13(t_tree *tree, char *name);
 int						bit_a_l(t_tree *tree, t_bit *bit);
 int						tree_error(t_tree *tree);
 int						bit_a(t_tree *tree, t_bit *bit);
-int						is_legal(char c);
+int						is_legal(char *c);
 int						one_or_not(t_tree *tree, t_bit *bit);
 int						validate_flags(char **argv);
 int						ascii_sort(t_tree *first, t_tree *second);

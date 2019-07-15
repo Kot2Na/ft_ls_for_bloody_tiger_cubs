@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 02:02:31 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/12 19:31:05 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/15 04:10:59 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ t_bit *create_flag(int ac, char **av)
  	return (bit);
 }
 
-int		is_legal(char c)
+int		is_legal(char *c)
 {
-	if (c != 'a' && c != 'R' && c != 'l' && c != 'r' && c != 't' && c != 'S')
+	if (*c != 'a' && *c != 'R' && *c != 'l' && *c != 'r' && *c != 't' && *c != 'S')
 		return (0);
 	return (1);
 }
@@ -47,9 +47,13 @@ int		validate_flags(char **argv)
 	j = 1;
 	while (argv[i])
 	{
+		if (argv[i][0] == '-' && argv[i][1] == '\0')
+			return (1);
+		if (!ft_strcmp(argv[i] + j, "LGBT"))
+				j += 4;
 		while (argv[i][0] == '-' && argv[i][j])
 		{
-			if (!is_legal(argv[i][j]))
+			if (!is_legal(argv[i] + j))
 			{
                 ft_putstr("ls: illegal option -- ");
                 ft_putchar(argv[i][j]);
@@ -87,6 +91,8 @@ void	set_flags(char **argv, t_bit *flags)
                 flags->t = 1;
 			else if (argv[i][j] == 'S')
                 flags->s = 1;
+			else if (!ft_strcmp(argv[i] + 1, "LGBT"))
+				flags->lgbt = 1;
             j++;
         }
         i++;
@@ -102,4 +108,5 @@ void	set_zero(t_bit *flags)
     flags->t = 0;
 	flags->s = 0;
 	flags->er = 0;
+	flags->lgbt = 0;
 }
