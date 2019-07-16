@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 09:28:21 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 22:12:50 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		for_l(t_tree *tree, char *name, t_bit *bit)
 			i = 1;
 			continue ;
 		}
-		i = path_and_total(tree, bit, name);
+		i += path_and_total(tree, bit, name);
 		if (bit_a_l(tree, bit))
 			i = 1;
 		tree = tree->next;
