@@ -75,8 +75,8 @@ int		tree_print(t_tree *tree, char *name, t_bit *bit, int er)
 
 	if (tree)
 	{
-		if (er)
-			i = print_invalid(tree);
+	    if (er && !bit->l)
+	        print_invalid(tree);
 		i = bit->l ? for_l(tree, name, bit) : not_for_l(tree, name, bit);
 		while (tree)
 		{

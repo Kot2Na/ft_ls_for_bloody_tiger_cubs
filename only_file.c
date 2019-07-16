@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 06:41:46 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 07:06:42 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 08:03:33 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ t_tree	*tree_file(t_bit *bit, int ac, char **av)
 	t_tree *file;
 	int i;
 
-	i = 0;
+	i = 1;
 	file = NULL;
 	while (av[i] && av[i][0] == '-' && av[i][1] != '\0')
 		i++;
 	while (av[i])
 	{
-		if (!dir_valid(av[i]) && errno == ENOTDIR)
+		if (dir_valid(av[i]) && errno == ENOTDIR)
 		{
 			errno = 0;
 			file = tree_addend(file, tree_create(av[i]));
@@ -46,7 +46,8 @@ void	file_l(t_tree *tree, t_bit *bit)
 			tree = tree->next;
 			continue ;
 		}
-		bit_a_l(tree, bit);
+        print_str_l(tree, bit);
+		bit->er = 1;
 		tree = tree->next;
 	}
 	print_lgbt(-666);
@@ -56,12 +57,25 @@ int		file_not_l(t_tree *tree, t_bit *bit)
 {
 	int		max;
 	int		nbr;
+	int     i;
 
 	if (tree && bit)
 	{
+	    i = bit->a;
+	    bit->a = 1;
 		nbr = count_tree(tree, bit);
 		max = count_name_tree(tree, bit);
-		return (print_me_please(tree, bit, nbr, max));
+		if (print_me_please(tree, bit, nbr, max))
+        {
+		    bit->a = i;
+		    bit->er = 1;
+		    return (1);
+        }
+		else
+        {
+		    bit->a = i;
+		    return (0);
+        }
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 07:03:03 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 08:14:18 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ void	sup_for_main(t_tree *tr, t_tree *er, t_tree *fi, t_bit *flag)
 	if (flag->lgbt)
 		play_song();
 	tree_print(er, NULL, flag, 1);
+	if (fi)
+    {
+	    fi = tree_to_start(fi);
+        tree_controller(fi, flag);
+        fi = tree_to_start(fi);
+    }
 	print_file(fi, flag);
 	tree_print(tr, NULL, flag, 0);
 	tree_destroy(tr);
@@ -42,7 +48,7 @@ int		main(int ac, char **av)
 	if (tree)
 	{
 		tree = tree_to_start(tree);
-		tree_controller(tree, flag);
+		tree = tree_controller(tree, flag);
 	}
 	if (tree_er)
 	{

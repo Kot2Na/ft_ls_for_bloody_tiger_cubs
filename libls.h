@@ -84,7 +84,7 @@ t_bit					*create_flag(int ac, char **av);
 char					*make_path(char *from, char *to);
 char					*time_to_str(char *buf);
 int						tree_print(t_tree *tree, char *name, t_bit *bit, int er);
-void					tree_controller(t_tree *root, t_bit *flag);
+t_tree					*tree_controller(t_tree *root, t_bit *flag);
 void					sort_t(t_tree *root);
 void					tree_destroy(t_tree *tree);
 void					play_song(void);

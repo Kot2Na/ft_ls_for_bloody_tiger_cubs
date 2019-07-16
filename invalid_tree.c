@@ -19,6 +19,7 @@ int		dir_valid(char *name)
 	if ((fdir = opendir(name)))
 	{
 		closedir(fdir);
+		errno = 0;
 		return (1);
 	}
 	else if (errno == ENOTDIR)

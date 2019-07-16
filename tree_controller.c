@@ -12,7 +12,7 @@
 
 #include "libls.h"
 
-void	tree_controller(t_tree *root, t_bit *flags)
+t_tree	*tree_controller(t_tree *root, t_bit *flags)
 {
 	flags->a ? get_totalr(root) : get_total(root);
 	tree_sort(root, ascii_sort);
@@ -23,4 +23,6 @@ void	tree_controller(t_tree *root, t_bit *flags)
 	}
 	if (flags->s)
 		tree_sort(root, size_sort);
+	root = tree_to_start(root);
+	return (root);
 }

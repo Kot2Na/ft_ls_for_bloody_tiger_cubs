@@ -32,7 +32,8 @@ unsigned short	max_link(t_tree *root, t_bit *bit)
 
 	links = 0;
 	i = 1;
-	root = root->par->chi;
+	if (root->par)
+	    root = root->par->chi;
 	while (root)
 	{
 		if (!bit->a)
@@ -59,7 +60,8 @@ int				max_size(t_tree *root, t_bit *bit)
 
 	size = 0;
 	i = 1;
-	root = root->par->chi;
+	if (root->par)
+	    root = root->par->chi;
 	while (root)
 	{
 		if (!bit->a)
