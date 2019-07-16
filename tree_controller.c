@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 18:52:59 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/13 17:19:27 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 06:08:31 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	tree_controller(t_tree *root, t_bit *flags)
 	tree_sort(root, ascii_sort);
 	if (flags->t)
 	{
-        sort_t(root);
-        sort_t_ascii(root, ascii_sort);
-    }
-	 if (flags->s)
-		 tree_sort(root, size_sort);
+		sort_t(root);
+		sort_t_ascii(root, ascii_sort);
+	}
+	if (flags->s)
+		tree_sort(root, size_sort);
 }
