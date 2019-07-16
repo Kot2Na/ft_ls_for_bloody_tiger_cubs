@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 06:09:11 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/16 06:16:07 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/16 07:14:31 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int				find_n_length(long long num)
 	return (i);
 }
 
-static unsigned short	max_link(t_tree *root, t_bit *bit)
+unsigned short	max_link(t_tree *root, t_bit *bit)
 {
 	unsigned short links;
 	unsigned short i;
@@ -52,7 +52,7 @@ static unsigned short	max_link(t_tree *root, t_bit *bit)
 	return (i);
 }
 
-static int				max_size(t_tree *root, t_bit *bit)
+int				max_size(t_tree *root, t_bit *bit)
 {
 	long long size;
 	long long i;
@@ -79,7 +79,7 @@ static int				max_size(t_tree *root, t_bit *bit)
 	return (i);
 }
 
-static void				print_hd_link(t_data *data, unsigned short n1)
+void				print_hd_link(t_data *data, unsigned short n1)
 {
 	if (find_n_length(data->hd_link) != n1)
 	{
@@ -91,7 +91,7 @@ static void				print_hd_link(t_data *data, unsigned short n1)
 		ft_putchar(' ');
 }
 
-static void				print_size(t_data *data, long long n)
+void				print_size(t_data *data, long long n)
 {
 	if (find_n_length(data->size) != n)
 	{

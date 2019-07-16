@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 06:56:24 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 07:14:59 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void					tree_controller(t_tree *root, t_bit *flag);
 void					sort_t(t_tree *root);
 void					tree_destroy(t_tree *tree);
 void					play_song(void);
+unsigned short			max_link(t_tree *root, t_bit *bit);
+int						max_size(t_tree *root, t_bit *bit);
+void					print_hd_link(t_data *data, unsigned short n1);
+void					print_size(t_data *data, long long n);
 void					set_flags(char **argv, t_bit *flags);
 void					print_total(t_tree *tree);
 int						print_chi(t_tree *tree, char *name, t_bit *bit, int er);
@@ -96,6 +100,9 @@ void					set_zero(t_bit *flags);
 void					print_path(char *path);
 void					print_name(char *name);
 void					fill_data(t_tree *node, char *name);
+int						get_year(const char *buf);
+int						get_month(const char *buf);
+void					get_id(t_tree *node, t_stat *buff);
 void					tree_swap(t_tree *tree1, t_tree *tree2);
 void					tree_sort(t_tree *tr, int (*s)(t_tree *, t_tree *));
 void					print_file(t_tree *tree, t_bit *bit);

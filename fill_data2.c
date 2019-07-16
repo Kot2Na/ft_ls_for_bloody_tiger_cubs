@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 05:52:00 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/16 05:57:18 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/16 07:12:21 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void			file_set_zero(t_tree *node, int err)
 	node->data->time_hash = 0;
 }
 
-static void		get_id(t_tree *node, t_stat *buff)
-{
+void			get_id(t_tree *node, t_stat *buff)
+{	
 	struct passwd	*user_id;
 	struct group	*group_id;
 
@@ -55,7 +55,7 @@ static void		get_id(t_tree *node, t_stat *buff)
 	node->data->group = ft_strdup(group_id->gr_name);
 }
 
-static int		get_month(const char *buf)
+int				get_month(const char *buf)
 {
 	char	month[4];
 	int		res;
@@ -79,7 +79,7 @@ static int		get_month(const char *buf)
 	return (res);
 }
 
-static int		get_year(const char *buf)
+int				get_year(const char *buf)
 {
 	int res;
 
