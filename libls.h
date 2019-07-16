@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/15 05:18:25 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 03:46:15 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <time.h>
 # include <pwd.h>
 # include <grp.h>
+
+# define LINK https://bit.ly/2Y7fGri
 
 typedef struct dirent	t_dir;
 typedef struct stat		t_stat;
@@ -84,6 +86,7 @@ int						tree_print(t_tree *tree, char *name, t_bit *bit);
 void					tree_controller(t_tree *root, t_bit *flag);
 void					sort_t(t_tree *root);
 void					tree_destroy(t_tree *tree);
+void					play_song(void);
 void					set_flags(char **argv, t_bit *flags);
 void					print_total(t_tree *tree);
 int						print_chi(t_tree *tree, char *name, t_bit *bit);
@@ -97,6 +100,7 @@ void					tree_sort(t_tree *tr, int (*s)(t_tree *, t_tree *));
 void					sort_my_child(t_tree *tr, int (*s)(t_tree *, t_tree *));
 void					file_set_zero(t_tree *node, int err);
 void					print_lgbt(int f);
+void					kill_song(void);
 int						tree_error_13(t_tree *tree, char *name);
 int						bit_a_l(t_tree *tree, t_bit *bit);
 int						tree_error(t_tree *tree);
