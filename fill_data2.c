@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 05:52:00 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/16 07:12:21 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 09:31:20 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			file_set_zero(t_tree *node, int err)
 }
 
 void			get_id(t_tree *node, t_stat *buff)
-{	
+{
 	struct passwd	*user_id;
 	struct group	*group_id;
 

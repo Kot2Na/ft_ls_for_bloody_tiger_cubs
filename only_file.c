@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 06:41:46 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 08:03:33 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/16 09:28:52 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_tree	*tree_file(t_bit *bit, int ac, char **av)
 {
-	t_tree *file;
-	int i;
+	t_tree	*file;
+	int		i;
 
 	i = 1;
 	file = NULL;
@@ -46,7 +46,7 @@ void	file_l(t_tree *tree, t_bit *bit)
 			tree = tree->next;
 			continue ;
 		}
-        print_str_l(tree, bit);
+		print_str_l(tree, bit);
 		bit->er = 1;
 		tree = tree->next;
 	}
@@ -57,30 +57,30 @@ int		file_not_l(t_tree *tree, t_bit *bit)
 {
 	int		max;
 	int		nbr;
-	int     i;
+	int		i;
 
 	if (tree && bit)
 	{
-	    i = bit->a;
-	    bit->a = 1;
+		i = bit->a;
+		bit->a = 1;
 		nbr = count_tree(tree, bit);
 		max = count_name_tree(tree, bit);
 		if (print_me_please(tree, bit, nbr, max))
-        {
-		    bit->a = i;
-		    bit->er = 1;
-		    return (1);
-        }
+		{
+			bit->a = i;
+			bit->er = 1;
+			return (1);
+		}
 		else
-        {
-		    bit->a = i;
-		    return (0);
-        }
+		{
+			bit->a = i;
+			return (0);
+		}
 	}
 	return (0);
 }
 
-void print_file(t_tree *tree, t_bit *bit)
+void	print_file(t_tree *tree, t_bit *bit)
 {
 	if (tree && bit)
 	{

@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 03:36:25 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 08:37:52 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/16 09:32:44 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	print_lgbt(int f)
 
 void	play_song(void)
 {
-	system("curl http:/LINK --output .it_is_ok.mp3 2> /dev/null");
-	system("afplay -v 1 .it_is_ok.mp3 2> /dev/null &");
+	system("curl -sL http://tiny.cc/3twr9y --output .ok.mp3 2> /dev/null");
+	system("afplay -v 1 .ok.mp3 2> /dev/null &");
 }
 
 void	kill_song(void)

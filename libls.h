@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 07:14:59 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 09:33:43 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # include <time.h>
 # include <pwd.h>
 # include <grp.h>
-
-# define LINK /bit.ly/2Y7fGri
 
 typedef struct dirent	t_dir;
 typedef struct stat		t_stat;
@@ -83,7 +81,7 @@ t_tree					*tree_file(t_bit *bit, int ac, char **av);
 t_bit					*create_flag(int ac, char **av);
 char					*make_path(char *from, char *to);
 char					*time_to_str(char *buf);
-int						tree_print(t_tree *tree, char *name, t_bit *bit, int er);
+int						tree_print(t_tree *tr, char *nm, t_bit *bt, int er);
 t_tree					*tree_controller(t_tree *root, t_bit *flag);
 void					sort_t(t_tree *root);
 void					tree_destroy(t_tree *tree);
