@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 15:45:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/14 22:48:25 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:17:28 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		print_chi(t_tree *tree, char *name, t_bit *bit)
 {
-	int 	i;
+	int		i;
 	char	*path;
 
 	i = 0;

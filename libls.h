@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 03:46:15 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:14:34 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,15 @@ void					sort_my_child(t_tree *tr, int (*s)(t_tree *, t_tree *));
 void					file_set_zero(t_tree *node, int err);
 void					print_lgbt(int f);
 void					kill_song(void);
+int						path_and_total(t_tree *tree, t_bit *bit, char *name);
+void					calc_row_col(int nbr, int max, int *col, int *row);
+int						print_new_line(int i);
+int						count_tree(t_tree *tree, t_bit *bit);
+int						count_name_tree(t_tree *tree, t_bit *bit);
+t_tree					*find_tree(t_tree *tree, int n, t_bit *bit);
+void					fill_space(char *name, int max);
+int						print_me_please(t_tree *tree, t_bit *bit, int nbr, int max);
+int						prepar_for_print(t_tree *tree, t_bit *bit);
 int						tree_error_13(t_tree *tree, char *name);
 int						bit_a_l(t_tree *tree, t_bit *bit);
 int						tree_error(t_tree *tree);
