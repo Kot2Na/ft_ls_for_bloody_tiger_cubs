@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:03:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 04:51:37 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 22:51:19 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		tree_error_13(t_tree *tree, char *name)
 	return (0);
 }
 
-t_tree	*tree_invalid(int ac, char **av, t_bit *bit)
+t_tree	*tree_invalid(char **av, t_bit *bit)
 {
 	t_tree	*tree;
 	int		i;

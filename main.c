@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 09:47:43 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/16 22:52:31 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int		main(int ac, char **av)
 
 	flag = create_flag(ac, av);
 	print_lgbt(-1);
-	tree_er = tree_invalid(ac, av, flag);
+	tree_er = tree_invalid(av, flag);
 	tree = tree_born(flag, ac, av);
-	file = tree_file(flag, ac, av);
+	file = tree_file(flag, av);
 	if (tree)
 	{
 		tree = tree_to_start(tree);

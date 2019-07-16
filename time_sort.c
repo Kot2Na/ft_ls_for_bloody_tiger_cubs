@@ -6,35 +6,11 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 05:48:01 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/16 05:49:39 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/16 22:52:58 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
-
-static int		is_sorted(t_tree *root)
-{
-	t_tree *p;
-
-	if (!root)
-		return (1);
-	while (root->pre != NULL)
-		root = root->pre;
-	p = root->next;
-	while (root)
-	{
-		while (p)
-		{
-			if (root->data->time_hash < p->data->time_hash)
-				return (0);
-			p = p->next;
-		}
-		root = root->next;
-		if (root)
-			p = root->next;
-	}
-	return (1);
-}
 
 void			sort_next(t_tree *root, t_tree *p)
 {

@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 22:12:50 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 22:54:44 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		for_l(t_tree *tree, char *name, t_bit *bit)
 int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 {
 	char	*path;
-	t_win	win;
 	int		i;
 
 	i = 0;
@@ -73,7 +72,7 @@ int		tree_print(t_tree *tree, char *name, t_bit *bit, int er)
 {
 	int		i;
 
-	if (tree)
+	if (!(i = 0) && tree)
 	{
 		if (er && !bit->l)
 			print_invalid(tree);

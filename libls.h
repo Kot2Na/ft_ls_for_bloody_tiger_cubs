@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 09:33:43 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 22:52:20 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ t_tree					*tree_to_start(t_tree *tree);
 t_tree					*tree_open(t_bit *bit, t_tree *root, char *name);
 t_tree					*tree_born(t_bit *bit, int ac, char **av);
 t_tree					*to_start(t_tree *tree);
-t_tree					*tree_invalid(int ac, char **av, t_bit *bit);
-t_tree					*tree_file(t_bit *bit, int ac, char **av);
+t_tree					*tree_invalid(char **av, t_bit *bit);
+t_tree					*tree_file(t_bit *bit, char **av);
 t_bit					*create_flag(int ac, char **av);
 char					*make_path(char *from, char *to);
 char					*time_to_str(char *buf);

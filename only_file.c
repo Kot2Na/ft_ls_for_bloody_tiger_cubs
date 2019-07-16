@@ -6,13 +6,13 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 06:41:46 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 09:28:52 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 22:51:52 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
 
-t_tree	*tree_file(t_bit *bit, int ac, char **av)
+t_tree	*tree_file(t_bit *bit, char **av)
 {
 	t_tree	*file;
 	int		i;
