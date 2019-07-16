@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:03:13 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/12 18:34:04 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:51:37 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		dir_valid(char *name)
 		closedir(fdir);
 		return (1);
 	}
+	else if (errno == ENOTDIR)
+		return (1);
 	return (0);
 }
 
@@ -70,7 +72,7 @@ t_tree	*tree_invalid(int ac, char **av, t_bit *bit)
 
 	i = 1;
 	tree = NULL;
-	while (av[i] && av[i][0] == '-')
+	while (av[i] && av[i][0] == '-' && av[i][1] != '\0')
 		i++;
 	while (av[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 04:09:29 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 06:49:38 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 	i = 0;
 	path = make_path(name, tree->name);
 	if (bit->lgbt)
-	{
 		print_lgbt(0);
-	}
 	if (one_or_not(tree, bit) && !tree->pre)
 	{
 		i = 1;
@@ -58,12 +56,27 @@ int		not_for_l(t_tree *tree, char *name, t_bit *bit)
 	return (i);
 }
 
-int		tree_print(t_tree *tree, char *name, t_bit *bit)
+int		print_invalid(t_tree *tree)
+{
+	int i;
+
+	i = 0;
+	while(tree)
+	{
+		i = tree_error(tree);
+		tree = tree->next;
+	}
+	return (i);
+}
+
+int		tree_print(t_tree *tree, char *name, t_bit *bit, int er)
 {
 	int		i;
 
 	if (tree)
 	{
+		if (er)
+			i = print_invalid(tree);
 		i = bit->l ? for_l(tree, name, bit) : not_for_l(tree, name, bit);
 		while (tree)
 		{
@@ -77,7 +90,7 @@ int		tree_print(t_tree *tree, char *name, t_bit *bit)
 			if (tree->chi)
 			{
 				i = print_new_line(i);
-				i = print_chi(tree, name, bit);
+				i = print_chi(tree, name, bit, er);
 			}
 			tree = tree->next;
 		}
