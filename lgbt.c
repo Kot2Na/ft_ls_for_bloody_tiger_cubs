@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 03:36:25 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 09:32:44 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 09:45:32 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	play_song(void)
 
 void	kill_song(void)
 {
-	system("kill $(ps | grep .it_is_ok.mp3 | grep afplay | awk '{print $1}')");
+	system("kill $(ps | grep .ok.mp3 | grep afplay | awk '{print $1}')");
 }
