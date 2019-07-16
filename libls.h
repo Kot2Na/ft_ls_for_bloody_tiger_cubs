@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 04:14:34 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:26:03 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <pwd.h>
 # include <grp.h>
 
-# define LINK https://bit.ly/2Y7fGri
+# define LINK /bit.ly/2Y7fGri
 
 typedef struct dirent	t_dir;
 typedef struct stat		t_stat;
@@ -68,9 +68,9 @@ typedef struct			s_tree
 	struct s_tree		*pre;
 }						t_tree;
 
-void                    sort_not_next(t_tree *root, t_tree *p);
-void                    sort_next(t_tree *root, t_tree *p);
-void                    sort_t_ascii(t_tree *root, int (*s)(t_tree *, t_tree *));
+void					sort_not_next(t_tree *root, t_tree *p);
+void					sort_next(t_tree *root, t_tree *p);
+void					sort_t_ascii(t_tree *tr, int (*s)(t_tree *, t_tree *));
 t_tree					*tree_create(char *name);
 t_tree					*tree_addend(t_tree *start, t_tree *new);
 t_tree					*tree_addend_chil(t_tree *root, t_tree *leaf);
@@ -108,7 +108,7 @@ int						count_tree(t_tree *tree, t_bit *bit);
 int						count_name_tree(t_tree *tree, t_bit *bit);
 t_tree					*find_tree(t_tree *tree, int n, t_bit *bit);
 void					fill_space(char *name, int max);
-int						print_me_please(t_tree *tree, t_bit *bit, int nbr, int max);
+int						print_me_please(t_tree *tr, t_bit *bt, int nb, int mx);
 int						prepar_for_print(t_tree *tree, t_bit *bit);
 int						tree_error_13(t_tree *tree, char *name);
 int						bit_a_l(t_tree *tree, t_bit *bit);
