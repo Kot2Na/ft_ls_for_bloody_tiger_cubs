@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/17 06:01:12 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/17 06:40:54 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,21 @@ int		print_invalid(t_tree *tree)
 	return (i);
 }
 
+int		print_if_will(int i, t_bit *bit, t_tree *tree)
+{
+	if (bit->a)
+	{
+		if (i)
+			i = print_new_line(i);
+	}
+	else
+	{
+		if (i && tree->name[0] != '.')
+			i = print_new_line(i);
+	}
+	return (i);
+}
+
 int		tree_print(t_tree *tree, char *name, t_bit *bit, int er)
 {
 	int		i;
@@ -88,7 +103,7 @@ int		tree_print(t_tree *tree, char *name, t_bit *bit, int er)
 			}
 			if (tree->chi)
 			{
-				i = print_new_line(i);
+				i = print_if_will(i, bit, tree);
 				i = print_chi(tree, name, bit, er);
 			}
 			tree = tree->next;
