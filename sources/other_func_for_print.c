@@ -24,7 +24,7 @@ int		path_and_total(t_tree *tree, t_bit *bit, char *name)
 	}
 	if (tree->par && !tree->pre)
 	{
-		print_total(tree);
+		print_total(tree, bit);
 		i = 1;
 	}
 	return (i);
