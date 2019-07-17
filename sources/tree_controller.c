@@ -6,13 +6,31 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 18:52:59 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/17 04:52:34 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:26:11 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libls.h"
 
-t_tree *reverse_me(t_tree *tree)
+int		print_if_will(int i, t_bit *bit, t_tree *tree)
+{
+	if (tree && bit)
+	{
+		if (bit->a)
+		{
+			if (i)
+				i = print_new_line(i);
+		}
+		else
+		{
+			if (i && tree->name[0] != '.')
+				i = print_new_line(i);
+		}
+	}
+	return (i);
+}
+
+t_tree	*reverse_me(t_tree *tree)
 {
 	t_tree	*swap;
 	t_tree	*node;
