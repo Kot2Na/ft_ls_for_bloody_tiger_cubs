@@ -34,7 +34,7 @@ void	sup_for_main(t_tree *tr, t_tree *er, t_tree *fi, t_bit *flag)
 
 int		main(int ac, char **av)
 {
-	t_bit	*flag;
+    t_bit	*flag;
 	t_tree	*tree;
 	t_tree	*tree_er;
 	t_tree	*file;

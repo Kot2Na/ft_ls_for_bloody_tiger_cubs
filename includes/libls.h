@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 22:52:20 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/17 19:50:25 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct			s_tree
 	struct s_tree		*pre;
 }						t_tree;
 
+int						print_if_will(int i, t_bit *bit, t_tree *tree);
 void					sort_not_next(t_tree *root, t_tree *p);
 void					sort_next(t_tree *root, t_tree *p);
 void					sort_t_ascii(t_tree *tr, int (*s)(t_tree *, t_tree *));
@@ -91,7 +92,7 @@ int						max_size(t_tree *root, t_bit *bit);
 void					print_hd_link(t_data *data, unsigned short n1);
 void					print_size(t_data *data, long long n);
 void					set_flags(char **argv, t_bit *flags);
-void					print_total(t_tree *tree);
+void			        print_total(t_tree *tree, t_bit *bit);
 int						print_chi(t_tree *tree, char *name, t_bit *bit, int er);
 void					print_str_l(t_tree *tree, t_bit *bit);
 void					set_zero(t_bit *flags);

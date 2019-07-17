@@ -21,7 +21,7 @@ int		for_l(t_tree *tree, char *name, t_bit *bit)
 	{
 		if (bit->lgbt)
 			print_lgbt(0);
-		if ((i += tree_error(tree)))
+		if ((i = tree_error(tree)))
 		{
 			tree = tree->next;
 			i = 1;

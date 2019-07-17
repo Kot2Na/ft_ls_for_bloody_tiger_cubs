@@ -63,9 +63,11 @@ void			print_str_l(t_tree *tree, t_bit *bit)
 	}
 }
 
-void			print_total(t_tree *tree)
+void			print_total(t_tree *tree, t_bit *bit)
 {
-	if (tree && tree->par->data->blocks != 0)
+	if (tree && ((tree->par->chi && bit->a) || ((tree->par->chi && ((tree->par->chi->name[0] != '.') || (tree->par->chi->next && (tree->par->chi->next->name[0] != '.')) ||
+	(tree->par->chi->next->next && tree->par->chi->next->next->name[0] != '.')
+	|| (tree->par->chi->next->next && tree->par->chi->next->next->next))))))
 	{
 		ft_putstr("total ");
 		ft_putnbr(tree->par->data->blocks);
