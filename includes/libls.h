@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 00:52:26 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 22:52:20 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/17 06:53:18 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int						count_tree(t_tree *tree, t_bit *bit);
 int						count_name_tree(t_tree *tree, t_bit *bit);
 t_tree					*find_tree(t_tree *tree, int n, t_bit *bit);
 void					fill_space(char *name, int max);
+int						print_if_will(int i, t_bit *bit, t_tree *tree);
 int						print_me_please(t_tree *tr, t_bit *bt, int nb, int mx);
 int						prepar_for_print(t_tree *tree, t_bit *bit);
 int						tree_error_13(t_tree *tree, char *name);

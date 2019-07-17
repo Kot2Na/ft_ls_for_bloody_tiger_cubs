@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/18 00:28:00 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/18 02:00:02 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ int		tree_print(t_tree *tree, char *name, t_bit *bit, int er)
 		{
 			if (tree->data && tree->data->error == 13)
 			{
-				i += print_new_line(i);
+				i = print_new_line(i);
 				if (bit->lgbt)
 					print_lgbt(0);
 				i += tree_error_13(tree, name);
 			}
 			if (tree->chi)
 			{
-				i += print_if_will(i, bit, tree);
+				i = print_if_will(i, bit, tree);
 				i += print_chi(tree, name, bit, er);
 			}
 			tree = tree->next;
