@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:26:37 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/17 07:37:53 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/18 00:28:00 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		for_l(t_tree *tree, char *name, t_bit *bit)
 	{
 		if (bit->lgbt)
 			print_lgbt(0);
-		if ((i += tree_error(tree)))
+		if ((tree_error(tree)))
 		{
 			tree = tree->next;
 			i = 1;
