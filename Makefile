@@ -6,7 +6,7 @@
 #    By: crycherd <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 20:26:26 by crycherd          #+#    #+#              #
-#    Updated: 2019/07/17 04:12:07 by crycherd         ###   ########.fr        #
+#    Updated: 2019/07/17 06:06:44 by crycherd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ $(RIDJBO)/%.o: $(RIDCRS)/%.c $(SEDULCNID)
 	gcc -c $(FLAGS) $< -o $@ $(SEDULCNIS)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(RIDJBO)/*.o
 	make -C libft/ clean
 
 fclean: clean
