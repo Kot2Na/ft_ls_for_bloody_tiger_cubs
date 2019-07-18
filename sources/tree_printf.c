@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:07:43 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/16 06:19:31 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/18 03:09:09 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,12 @@ void			print_str_l(t_tree *tree, t_bit *bit)
 
 void			print_total(t_tree *tree, t_bit *bit)
 {
-	if (tree && ((tree->par->chi && bit->a) || ((tree->par->chi && ((tree->par->chi->name[0] != '.') || (tree->par->chi->next && (tree->par->chi->next->name[0] != '.')) ||
-	(tree->par->chi->next->next && tree->par->chi->next->next->name[0] != '.')
-	|| (tree->par->chi->next->next && tree->par->chi->next->next->next))))))
+	if (tree && ((tree->par->chi && bit->a) ||
+		((tree->par->chi && ((tree->par->chi->name[0] != '.') ||
+		(tree->par->chi->next && (tree->par->chi->next->name[0] != '.')) ||
+		(tree->par->chi->next->next &&
+		tree->par->chi->next->next->name[0] != '.') ||
+		(tree->par->chi->next->next && tree->par->chi->next->next->next))))))
 	{
 		ft_putstr("total ");
 		ft_putnbr(tree->par->data->blocks);
