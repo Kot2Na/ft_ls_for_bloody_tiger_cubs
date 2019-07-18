@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 06:09:11 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/16 09:33:14 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/18 03:12:05 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ unsigned short	max_link(t_tree *root, t_bit *bit)
 	if (root->par)
 		root = root->par->chi;
 	if (!root->par && !root->chi)
-    {
-	    while (root->pre)
-	        root = root->pre;
-    }
+	{
+		while (root->pre)
+			root = root->pre;
+	}
 	while (root)
 	{
 		if (!bit->a)
@@ -67,11 +67,11 @@ int				max_size(t_tree *root, t_bit *bit)
 	i = 1;
 	if (root->par)
 		root = root->par->chi;
-    if (!root->par && !root->chi)
-    {
-        while (root->pre)
-            root = root->pre;
-    }
+	if (!root->par && !root->chi)
+	{
+		while (root->pre)
+			root = root->pre;
+	}
 	while (root)
 	{
 		if (!bit->a)

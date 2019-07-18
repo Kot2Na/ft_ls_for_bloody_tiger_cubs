@@ -6,7 +6,7 @@
 /*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 01:11:17 by crycherd          #+#    #+#             */
-/*   Updated: 2019/07/17 06:39:21 by bomanyte         ###   ########.fr       */
+/*   Updated: 2019/07/18 03:01:52 by crycherd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sup_for_main(t_tree *tr, t_tree *er, t_tree *fi, t_bit *flag)
 
 int		main(int ac, char **av)
 {
-    t_bit	*flag;
+	t_bit	*flag;
 	t_tree	*tree;
 	t_tree	*tree_er;
 	t_tree	*file;
