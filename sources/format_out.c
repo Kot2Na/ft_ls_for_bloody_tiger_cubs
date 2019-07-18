@@ -6,7 +6,7 @@
 /*   By: bomanyte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 06:09:11 by bomanyte          #+#    #+#             */
-/*   Updated: 2019/07/18 03:12:05 by crycherd         ###   ########.fr       */
+/*   Updated: 2019/07/18 11:21:19 by bomanyte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,7 @@ unsigned short	max_link(t_tree *root, t_bit *bit)
 			links = root->data->hd_link;
 		root = root->next;
 	}
-	while (links / 10 != 0)
-	{
-		links = links / 10;
-		i++;
-	}
-	return (i);
+	return (find_n_length(links));
 }
 
 int				max_size(t_tree *root, t_bit *bit)
@@ -83,12 +78,7 @@ int				max_size(t_tree *root, t_bit *bit)
 			size = root->data->size;
 		root = root->next;
 	}
-	while (size / 10 != 0)
-	{
-		size = size / 10;
-		i++;
-	}
-	return (i);
+	return (find_n_length(size));
 }
 
 void			print_hd_link(t_data *data, unsigned short n1)
