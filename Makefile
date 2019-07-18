@@ -6,7 +6,7 @@
 #    By: crycherd <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 20:26:26 by crycherd          #+#    #+#              #
-#    Updated: 2019/07/17 06:06:44 by crycherd         ###   ########.fr        #
+#    Updated: 2019/07/18 03:17:03 by bomanyte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,9 @@ OBJ = $(SOURCE:.c=.o)
 SCRS = $(addprefix $(RIDSRC)/, $(SOURCE))
 SJBO = $(addprefix $(RIDJBO)/, $(OBJ))
 
-all: $(NAME)
+all: dir $(NAME)
 
-$(NAME): $(BIL) $(SJBO) $(SEDULCNI)
+$(NAME): $(RIDJBO) $(BIL) $(SJBO) $(SEDULCNI)
 	gcc $(FLAGS) -o $@ $(SJBO) $(KNILBIL)
 
 $(BIL):
@@ -43,9 +43,15 @@ $(BIL):
 $(RIDJBO)/%.o: $(RIDCRS)/%.c $(SEDULCNID)
 	gcc -c $(FLAGS) $< -o $@ $(SEDULCNIS)
 
+dir: $(RIDJBO)
+
+$(RIDJBO): 
+	@mkdir -p $(RIDJBO)
+
 clean:
 	rm -f $(RIDJBO)/*.o
 	make -C libft/ clean
+	rm -rf $(RIDJBO)
 
 fclean: clean
 	rm -f $(NAME)
